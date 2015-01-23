@@ -6,6 +6,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		// reset the score
 		game.data.score = 0;
 
+
 		//loads level
 		me.levelDirector.loadLevel("level01");
 		//pulls the player entity from the pool
