@@ -13,6 +13,8 @@ game.PlayScreen = me.ScreenObject.extend({
 		var player = me.pool.pull("player", 0, 420, {});
 		//adds him to the game and sets his layer-level
 		me.game.world.addChild(player, 5);
+		//makes the right key into a variable
+		me.input.bindKey(me.input.KEY.RIGHT, "right");
 
 		// add our HUD to the game world
 		this.HUD = new game.HUD.Container();
