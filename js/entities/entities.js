@@ -20,8 +20,8 @@ game.PlayerEntity = me.Entity.extend ({
 				return(new me.Rect(0, 0, 64, 64)).toPolygon();
 			}
 		}]);
-		//sets movemet speed
-		this.body.setVelocity(5, 0);
+		//sets movemet speed. allows player to move horizantally and vertically
+		this.body.setVelocity(5, 20);
 	},
 
 
