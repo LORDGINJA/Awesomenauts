@@ -28,7 +28,7 @@ game.PlayerEntity = me.Entity.extend ({
 		//gives player animation while walking
 		this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
 		//gives player animation while attacking
-		this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 72, 73, 74, 75], 80);
+		this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72], 80);
 		//the player's start animation
 		this.renderable.setCurrentAnimation("idle");
 	},
@@ -47,7 +47,7 @@ game.PlayerEntity = me.Entity.extend ({
 			//when right key is pressed, adds to the position of my x by the velocity defined above in setVelocity and multiplying it by me.timer.tick
 			//me.timer.tick makes the movement look smooth
 			this.body.vel.x -= this.body.accel.x * me.timer.tick;
-			this.flipX(true);
+			this.flipX(false);
 		}
 
 		//if the right key isn't being pressed, the player doesn't move

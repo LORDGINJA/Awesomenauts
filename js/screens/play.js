@@ -15,6 +15,8 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.game.world.addChild(player, 5);
 		//makes the right key into a variable
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
+		//makes the right key into a variable
+		me.input.bindKey(me.input.KEY.LEFT, "left");
 		//makes an attack key
 		me.input.bindKey(me.input.KEY.A, "attack");
 
