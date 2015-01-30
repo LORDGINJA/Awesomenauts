@@ -33,6 +33,6 @@
  </layer>
  <objectgroup name="BaseEntities">
   <object name="PlayerBase" x="70" y="420" width="70" height="140"/>
-  <object name="EnemyBase" x="980" y="420" width="70" height="140" rotation="0.0486056"/>
+  <object name="EnemyBase" x="910" y="420" width="70" height="140" rotation="0.0486056"/>
  </objectgroup>
 </map>

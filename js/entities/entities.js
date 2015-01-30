@@ -21,6 +21,8 @@ game.PlayerEntity = me.Entity.extend ({
 		}]);
 		//sets movemet speed. allows player to move horizantally and vertically
 		this.body.setVelocity(5, 20);
+		//makesit so the player is always on the screen
+		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 		//gives player animation while standing
 		this.renderable.addAnimation("idle", [78]);
 		//gives player animation while walking
@@ -95,6 +97,13 @@ game.PlayerBaseEntity = me.Entity.extend({
 		this.body.onCollision = this.onCollision.bind(this);
 		//checks what player is running into
 		this.type = "PlayerBaseEntity";
+		//adds the defualt animatin for the game
+		this.renderable.addAnimation("idle", [0]);
+		//adds the animation for when the tower is broken
+		this.renderable.addAnimation("broken", [1]);
+		//sets the desfault animation
+		this.renderable.setCurrentAnimation("idle");
+
 	},	
 
 
@@ -103,11 +112,13 @@ game.PlayerBaseEntity = me.Entity.extend({
 		if(this.health<=0){
 			//makes the tower "broken"
 			this.broken = true;
+			//sets animation for "broken"
+			this.renderable.setCurrentAnimation("broken");
 		}
 		//updates tower status
 		this.body.update(delta);
 
-		this._super(me.Entit, "update", [delta]);
+		this._super(me.Entity, "update", [delta]);
 		return true;
 	},
 	//function that runs when base is touched
@@ -148,6 +159,12 @@ game.EnemyBaseEntity = me.Entity.extend({
 		this.body.onCollision = this.onCollision.bind(this);
 		//checks what player is running into
 		this.type = "EnemyBaseEntity";
+		//adds the defualt animatin for the game
+		this.renderable.addAnimation("idle", [0]);
+		//adds the animation for when the tower is broken
+		this.renderable.addAnimation("broken", [1]);
+		//sets the default animation
+		this.renderable.setCurrentAnimation("idle");
 	},	
 
 
@@ -156,11 +173,13 @@ game.EnemyBaseEntity = me.Entity.extend({
 		if(this.health<=0){
 			//makes the tower "broken"
 			this.broken = true;
+			//sets animation for "broken"
+			this.renderable.setCurrentAnimation("broken");
 		}
 		//updates tower status
 		this.body.update(delta);
 
-		this._super(me.Entit, "update", [delta]);
+		this._super(me.Entity, "update", [delta]);
 		return true;
 	},
 	//function that runs when base is touched
