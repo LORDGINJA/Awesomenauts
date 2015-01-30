@@ -27,6 +27,8 @@ game.PlayerEntity = me.Entity.extend ({
 		this.renderable.addAnimation("idle", [78]);
 		//gives player animation while walking
 		this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
+		//gives player animation while attacking
+		this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 72, 73, 74, 75], 80);
 		//the player's start animation
 		this.renderable.setCurrentAnimation("idle");
 	},
@@ -40,12 +42,31 @@ game.PlayerEntity = me.Entity.extend ({
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
 			this.flipX(true);
 		}
+
+		else if(me.input.isKeyPressed("left")){
+			//when right key is pressed, adds to the position of my x by the velocity defined above in setVelocity and multiplying it by me.timer.tick
+			//me.timer.tick makes the movement look smooth
+			this.body.vel.x -= this.body.accel.x * me.timer.tick;
+			this.flipX(true);
+		}
+
 		//if the right key isn't being pressed, the player doesn't move
 		else{
 			this.body.vel.x = 0;
 		}
+
+		//runs if the attack key is pressed
+		if(me.input.isKeyPressed("attack")){
+			if(!this.renderable.isCurrentAnimation("attack")){
+				//sets current animation to attack. goes back to idle oncethe attack is over it goes back to idle
+				this.renderable.setCurrentAnimation("attack", "idle")
+				//makes it so that next time the button is pressed the player starts from the first animation, not where it left off
+				this.renderable.setAnimationFrame();
+			}
+		}
+
 		//runs if the player is moving horizantally
-		if(this.body.vel.x !== 0){
+		else if(this.body.vel.x !== 0){
 			//runs if the player isn't already running the walk animation
 			if(!this.renderable.isCurrentAnimation("walk")){
 				//gives the player the walking animation
@@ -57,6 +78,8 @@ game.PlayerEntity = me.Entity.extend ({
 			//gives the player the idle animation
 			this.renderable.setCurrentAnimation("idle");
 		}
+
+		
 		//tells above code to work
 		this.body.update(delta);
 
