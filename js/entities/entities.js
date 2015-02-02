@@ -54,6 +54,13 @@ game.PlayerEntity = me.Entity.extend ({
 		else{
 			this.body.vel.x = 0;
 		}
+		//runs only if the up key is pressed, the player isn't already jumping or falling
+		if(me.input.isKeyPressed("jump") && !this.jumping && !this.falling){
+			//makes the player jump
+			this.jumping = true;
+			//sets velocity of the jump and the time
+			this.body.vel.y -= this.body.accel.y * me.timer.tick;
+		}
 
 		//runs if the attack key is pressed
 		if(me.input.isKeyPressed("attack")){
@@ -107,7 +114,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 			spriteheight: "100",
 			getShape: function(){
 				//returns a rectangle of what the tower walks into
-				return(new me.Rect(0, 0, 100, 100)).toPolygon();
+				return(new me.Rect(0, 0, 100, 60)).toPolygon();
 			}
 		}]);
 		//says that tower hasn't been destroyed
@@ -169,7 +176,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 			spriteheight: "100",
 			getShape: function(){
 				//returns a rectangle of what the tower walks into
-				return(new me.Rect(0, 0, 100, 100)).toPolygon();
+				return(new me.Rect(0, 0, 100, 60)).toPolygon();
 			}
 		}]);
 		//says that tower hasn't been destroyed
