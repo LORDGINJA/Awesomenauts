@@ -21,6 +21,8 @@ game.PlayerEntity = me.Entity.extend ({
 		}]);
 		//sets movemet speed. allows player to move horizantally and vertically
 		this.body.setVelocity(5, 20);
+		//keeps track of which way the character is going
+		this.facing = "right";
 		//makesit so the player is always on the screen
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 		//gives player animation while standing
@@ -40,6 +42,9 @@ game.PlayerEntity = me.Entity.extend ({
 			//when right key is pressed, adds to the position of my x by the velocity defined above in setVelocity and multiplying it by me.timer.tick
 			//me.timer.tick makes the movement look smooth
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
+			//so the program knows the character is facing right
+			this.facing = "right";
+			//flips the animation
 			this.flipX(true);
 		}
 
@@ -47,6 +52,9 @@ game.PlayerEntity = me.Entity.extend ({
 			//when right key is pressed, adds to the position of my x by the velocity defined above in setVelocity and multiplying it by me.timer.tick
 			//me.timer.tick makes the movement look smooth
 			this.body.vel.x -= this.body.accel.x * me.timer.tick;
+			//so the program knows the character is facing left
+			this.facing = "left";
+			//doesn't flip the animation
 			this.flipX(false);
 		}
 
@@ -55,9 +63,9 @@ game.PlayerEntity = me.Entity.extend ({
 			this.body.vel.x = 0;
 		}
 		//runs only if the up key is pressed, the player isn't already jumping or falling
-		if(me.input.isKeyPressed("jump") && !this.jumping && !this.falling){
+		if(me.input.isKeyPressed("jump") && !this.body.jumping && !this.body.falling){
 			//makes the player jump
-			this.jumping = true;
+			this.body.jumping = true;
 			//sets velocity of the jump and the time
 			this.body.vel.y -= this.body.accel.y * me.timer.tick;
 		}
@@ -85,13 +93,38 @@ game.PlayerEntity = me.Entity.extend ({
 			//gives the player the idle animation
 			this.renderable.setCurrentAnimation("idle");
 		}
-
-		
+		//checks to see if player is colliding with base
+		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		//tells above code to work
 		this.body.update(delta);
 
 		this._super(me.Entity, "update", [delta]);
 		return true
+	},
+	//function for when player collides with tower
+	collideHandler: function(response){
+		//runs if the player collides with the enemy base
+		if (response.b.type === 'EnemyBaseEntity') {
+			//represents the difference between player's y distance and enemy's y distance
+			var ydif = this.pos.y - response.b.pos.y;
+			//represents the difference between player's and enemy base's x distance
+			var xdif = this.pos.x - response.b.pos.x;
+		
+			//runs if the player's x position is 36 units away from the tower while facing right 
+			if (xdif > -36 && this.facing === "right" && xdif < 0) {
+				//stops player from moving 
+				this.body.vel.x = 0;
+				//moves player slightly away from tower
+				this.pos.x = this.pos.x -1;
+			}
+			//runs if the player's x position is 75 units away from the tower while facing left 
+			else if (xdif < 75 && this.facing === "left" && xdif > 0) {
+				//stops player from moving 
+				this.body.vel.x = 0;
+				//moves player slightly away from tower
+				this.pos.x = this.pos.x +1;
+			}
+		}
 	}
 });
 
