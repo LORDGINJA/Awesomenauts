@@ -109,15 +109,21 @@ game.PlayerEntity = me.Entity.extend ({
 			var ydif = this.pos.y - response.b.pos.y;
 			//represents the difference between player's and enemy base's x distance
 			var xdif = this.pos.x - response.b.pos.x;
-		
-			//runs if the player's x position is 36 units away from the tower while facing right 
-			if (xdif > -36 && this.facing === "right" && xdif < 0) {
+			//runs if the player is on top of the enemy base
+			if (ydif < -40 && xdif < 60 && xdif > -35) {
+				//stops the player from moving down
+				this.body.falling = false;
+				//keeps the player from falling through the tower
+				this.body.vel.y = -1;
+			}
+			//runs if the player's x position is 37 units away from the tower while facing right 
+			else if (xdif > -36 && this.facing === "right" && xdif < 0) {
 				//stops player from moving 
 				this.body.vel.x = 0;
 				//moves player slightly away from tower
 				this.pos.x = this.pos.x -1;
 			}
-			//runs if the player's x position is 75 units away from the tower while facing left 
+			//runs if the player's x position is 74 units away from the tower while facing left 
 			else if (xdif < 75 && this.facing === "left" && xdif > 0) {
 				//stops player from moving 
 				this.body.vel.x = 0;
