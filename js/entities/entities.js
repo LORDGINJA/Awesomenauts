@@ -209,11 +209,6 @@ game.PlayerBaseEntity = me.Entity.extend({
 	//function that runs when base is touched
 	onCollision: function(){
 
-	},
-
-	loseHealth: function(){
-		//makes the tower loose 1 health on each hit
-		this.health--;
 	}
 });
 
@@ -275,5 +270,10 @@ game.EnemyBaseEntity = me.Entity.extend({
 	//function that runs when base is touched
 	onCollision: function(){
 		
+	},
+
+	loseHealth: function(){
+		//makes the tower loose 1 health on each hit
+		this.health--;
 	}
 });
