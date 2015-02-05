@@ -42,7 +42,7 @@ game.PlayerEntity = me.Entity.extend ({
 	},
 
 
-	//delata is the change in time that's happening
+	//delta is the change in time that's happening
 	update: function(delta){
 		//keeps timer updated
 		this.now = new Date().getTime();
@@ -151,7 +151,6 @@ game.PlayerEntity = me.Entity.extend ({
 });
 
 
-
 //tower class
 game.PlayerBaseEntity = me.Entity.extend({
 	init: function(x, y, settings){
@@ -211,7 +210,6 @@ game.PlayerBaseEntity = me.Entity.extend({
 
 	}
 });
-
 
 
 //tower class
@@ -276,4 +274,41 @@ game.EnemyBaseEntity = me.Entity.extend({
 		//makes the tower loose 1 health on each hit
 		this.health--;
 	}
+});
+
+game.EnemyCreep = me.Entity.extend({
+init: function(x, y, settings){
+		//reaches the constructor function for enitity
+		this._super(me.Entity, 'init', [x, y, {
+			//settings. shows the creep
+			image: "creep1",
+			//sets aside a width of 64 pixels for the sprite
+			width: 32,
+			//sets aside a height of 64 pixels for the sprite
+			height: 64,
+			//gives the sprite a width of 64. 
+			spritewidth : "32",
+			//gives the sprite a width of 64
+			spriteheight: "64",
+		}]);
+		//sets health to ten
+		this.health = 10;
+		//makes the creep's satus continuosly update
+		this.alwaysUpdate = true;
+		//sets the creep's horizantal and vertical speed
+		this.setVelocity(3, 20);
+		//sets the sprite's type
+		this.type = "EnemyCreep";
+		//creates the walking animation
+		this.renderable.addAnimation("walk", [3, 4, 5], 80);
+		//applies the walking animation
+		this.renderable.setCurrentAnimation("walk");
+	},
+
+
+	//delta is the change in time that's happening
+	update: function(delta){
+		
+	}
+	
 });
