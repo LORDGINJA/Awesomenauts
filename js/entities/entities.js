@@ -23,6 +23,12 @@ game.PlayerEntity = me.Entity.extend ({
 		this.body.setVelocity(5, 20);
 		//keeps track of which way the character is going
 		this.facing = "right";
+		//variable for keeping track of time and date
+		this.now = new Date().getTime();
+		//same ^^
+		this.lastHit = this.now;
+		//keeps the player from attacking multiple times
+		this.lastAttack = new Date().getTime();
 		//makesit so the player is always on the screen
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 		//gives player animation while standing
@@ -38,6 +44,9 @@ game.PlayerEntity = me.Entity.extend ({
 
 	//delata is the change in time that's happening
 	update: function(delta){
+		//keeps timer updated
+		this.now = new Date().getTime();
+		//runs if the right key is pressed
 		if(me.input.isKeyPressed("right")){
 			//when right key is pressed, adds to the position of my x by the velocity defined above in setVelocity and multiplying it by me.timer.tick
 			//me.timer.tick makes the movement look smooth
@@ -80,16 +89,16 @@ game.PlayerEntity = me.Entity.extend ({
 			}
 		}
 
-		//runs if the player is moving horizantally
-		else if(this.body.vel.x !== 0){
+		//runs if the player is moving horizantally and not attacking
+		else if(this.body.vel.x !== 0 && !this.renderable.isCurrentAnimation("attack")){
 			//runs if the player isn't already running the walk animation
 			if(!this.renderable.isCurrentAnimation("walk")){
 				//gives the player the walking animation
 				this.renderable.setCurrentAnimation("walk");
 			}
 		}
-		//runs if player is standing still
-		else{
+		//runs if player is standing still and not attacking
+		else if(!this.renderable.isCurrentAnimation("attack")){
 			//gives the player the idle animation
 			this.renderable.setCurrentAnimation("idle");
 		}
@@ -129,6 +138,13 @@ game.PlayerEntity = me.Entity.extend ({
 				this.body.vel.x = 0;
 				//moves player slightly away from tower
 				this.pos.x = this.pos.x +1;
+			}
+			//runs if the player is attacking and its been 400 milliseconds since the last hit
+			if (this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000) {
+				//so the computer knows th eplayer just hit the tower
+				this.lastHit = this.now;
+				//calls the loseHealth function
+				response.b.loseHealth();
 			}
 		}
 	}
@@ -183,7 +199,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 			this.broken = true;
 			//sets animation for "broken"
 			this.renderable.setCurrentAnimation("broken");
-		}
+		} 
 		//updates tower status
 		this.body.update(delta);
 
@@ -193,6 +209,11 @@ game.PlayerBaseEntity = me.Entity.extend({
 	//function that runs when base is touched
 	onCollision: function(){
 
+	},
+
+	loseHealth: function(){
+		//makes the tower loose 1 health on each hit
+		this.health--;
 	}
 });
 
