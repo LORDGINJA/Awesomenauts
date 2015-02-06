@@ -106,9 +106,9 @@ game.PlayerEntity = me.Entity.extend ({
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		//tells above code to work
 		this.body.update(delta);
-
+		//updates the code
 		this._super(me.Entity, "update", [delta]);
-		return true
+		return true;
 	},
 	//function for when player collides with tower
 	collideHandler: function(response){
@@ -201,7 +201,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 		} 
 		//updates tower status
 		this.body.update(delta);
-
+		//updates
 		this._super(me.Entity, "update", [delta]);
 		return true;
 	},
@@ -238,7 +238,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 		this.health = 10;
 		//makes sure the tower's status is always updating, eben when it isn't on the map
 		this.alwaysUpdate = true;
-		//makes teh tower collidable
+		//makes the tower collidable
 		this.body.onCollision = this.onCollision.bind(this);
 		//checks what player is running into
 		this.type = "EnemyBaseEntity";
@@ -261,7 +261,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 		}
 		//updates tower status
 		this.body.update(delta);
-
+		//updates
 		this._super(me.Entity, "update", [delta]);
 		return true;
 	},
@@ -277,38 +277,67 @@ game.EnemyBaseEntity = me.Entity.extend({
 });
 
 game.EnemyCreep = me.Entity.extend({
-init: function(x, y, settings){
-		//reaches the constructor function for enitity
-		this._super(me.Entity, 'init', [x, y, {
-			//settings. shows the creep
-			image: "creep1",
-			//sets aside a width of 64 pixels for the sprite
-			width: 32,
-			//sets aside a height of 64 pixels for the sprite
-			height: 64,
-			//gives the sprite a width of 64. 
-			spritewidth : "32",
-			//gives the sprite a width of 64
-			spriteheight: "64",
-		}]);
-		//sets health to ten
-		this.health = 10;
-		//makes the creep's satus continuosly update
+	init: function(x, y, settings){
+			//reaches the constructor function for enitity
+			this._super(me.Entity, 'init', [x, y, {
+				//settings. shows the creep
+				image: "creep1",
+				//sets aside a width of 64 pixels for the sprite
+				width: 32,
+				//sets aside a height of 64 pixels for the sprite
+				height: 64,
+				//gives the sprite a width of 64. 
+				spritewidth : "32",
+				//gives the sprite a width of 64
+				spriteheight: "64",
+			}]);
+			//sets health to ten
+			this.health = 10;
+			//makes the creep's satus continuosly update
+			this.alwaysUpdate = true;
+			//sets the creep's horizantal and vertical speed
+			this.body.setVelocity(3, 20);
+			//sets the sprite's type
+			this.type = "EnemyCreep";
+			//creates the walking animation
+			this.renderable.addAnimation("walk", [3, 4, 5], 80);
+			//applies the walking animation
+			this.renderable.setCurrentAnimation("walk");
+		},
+
+
+		//delta is the change in time that's happening
+		update: function(delta){
+			
+		}
+	
+});
+
+//class that runs all the timers and occurences that aren't inside any of the other entities
+game.GameManager = Object.extend({
+	//constructor function
+	init: function(x, y, settings){
+		//sets timer
+		this.now = new Date().getTime();
+		//keeps track of last time creep was made
+		this.lastCreep = new Date().getTime();
+		//keeps the function updating
 		this.alwaysUpdate = true;
-		//sets the creep's horizantal and vertical speed
-		this.setVelocity(3, 20);
-		//sets the sprite's type
-		this.type = "EnemyCreep";
-		//creates the walking animation
-		this.renderable.addAnimation("walk", [3, 4, 5], 80);
-		//applies the walking animation
-		this.renderable.setCurrentAnimation("walk");
 	},
 
-
-	//delta is the change in time that's happening
-	update: function(delta){
-		
+	update: function(){
+		//keeps track of timer
+		this.now = new Date().getTime();
+		//checks to make sure there is a multiple of ten. makes sure its been at least a second since last creep has been made
+		if(Math.round(this.now/1000)%10 === 0 && (this.now - this.lastCreep >= 1000)){
+			//updates timer
+			this.lastCreep = this.now;
+			//creates and inserts creep into worls
+			var creepe = me.pool.pull("EnemyCreep", 1000, 0, {});
+			//adds the creeps to the worls
+			me.game.world.addChild(creepe, 5);
+		}
+		//updates
+		return true;
 	}
-	
 });

@@ -13,6 +13,10 @@ game.PlayScreen = me.ScreenObject.extend({
 		var player = me.pool.pull("player", 0, 420, {});
 		//adds him to the game and sets his layer-level
 		me.game.world.addChild(player, 5);
+		//adds gamemanager to world
+		var gamemanager = me.pool.pull("GameManager", 0 , 0, {});
+		//puts gamemanager into world
+		me.game.world.addChild(gamemanager, 0);
 		//makes the right key into a variable
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
 		//makes the right key into a variable
