@@ -308,7 +308,12 @@ game.EnemyCreep = me.Entity.extend({
 
 		//delta is the change in time that's happening
 		update: function(delta){
-			
+			//makes the creep move
+			this.body.vel.x -= this.body.accel.x *  me.timer.tick;
+			//basic update functions
+			this.body.update(delta);
+			this._super(me.Entity, "update", [delta]);
+			return true;
 		}
 	
 });
