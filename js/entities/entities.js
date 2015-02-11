@@ -290,11 +290,17 @@ game.EnemyCreep = me.Entity.extend({
 				spritewidth : "32",
 				//gives the sprite a width of 64
 				spriteheight: "64",
+
+				getShape: function(){
+					return(new me.Rect(0, 0, 32, 64)).toPolygon();
+				}
 			}]);
 			//sets health to ten
 			this.health = 10;
 			//makes the creep's satus continuosly update
 			this.alwaysUpdate = true;
+			//timer for attacking
+			this.now = new Date().getTime();
 			//sets the creep's horizantal and vertical speed
 			this.body.setVelocity(3, 20);
 			//sets the sprite's type
@@ -308,12 +314,21 @@ game.EnemyCreep = me.Entity.extend({
 
 		//delta is the change in time that's happening
 		update: function(delta){
+			//updates attack			this.now = new Date().getTime();
 			//makes the creep move
 			this.body.vel.x -= this.body.accel.x *  me.timer.tick;
+			//checks for collisions with player
+			me.collision.check(this, true, this.collideHandler.bind(this), true);
 			//basic update functions
 			this.body.update(delta);
 			this._super(me.Entity, "update", [delta]);
 			return true;
+		},
+
+		collideHandler: function(response){
+			if (response.b.type === 'PlayerBase') {
+
+			}
 		}
 	
 });
