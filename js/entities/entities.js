@@ -325,7 +325,8 @@ game.EnemyCreep = me.Entity.extend({
 
 		//delta is the change in time that's happening
 		update: function(delta){
-			//updates attack			this.now = new Date().getTime();
+			//updates attack
+			this.now = new Date().getTime();
 			//makes the creep move
 			this.body.vel.x -= this.body.accel.x *  me.timer.tick;
 			//checks for collisions with player
@@ -342,7 +343,7 @@ game.EnemyCreep = me.Entity.extend({
 				//makes the creep attack
 				this.attacking = true;
 				//timer that says when last attacked
-				this.lastAttacking = this.now;
+				//this.lastAttacking = this.now;
 				//prevents the creep from walking through the tower
 				this.body.vel.x = 0;
 				//pushes the creep back a little to maintain its position
