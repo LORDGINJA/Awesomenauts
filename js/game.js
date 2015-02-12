@@ -48,6 +48,8 @@ var game = {
 		me.pool.register("EnemyBase", game.EnemyBaseEntity);
 		//adds enemy creep to pool
 		me.pool.register("EnemyCreep", game.EnemyCreep, true);
+		//adds friend creep to pool
+		me.pool.register("FriendCreep", game.FriendCreep, true);
 		//registers oblject
 		me.pool.register("GameManager", game.GameManager);
 
