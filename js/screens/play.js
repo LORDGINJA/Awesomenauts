@@ -17,6 +17,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		var gamemanager = me.pool.pull("GameManager", 0 , 0, {});
 		//puts gamemanager into world
 		me.game.world.addChild(gamemanager, 0);
+		//me.game.world.addChild(gamemanager, 45);
 		//makes the right key into a variable
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
 		//makes the right key into a variable
