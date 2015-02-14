@@ -404,16 +404,16 @@ game.FriendCreep = me.Entity.extend({
 				//settings. shows the creep
 				image: "creep2",
 				//sets aside a width of 64 pixels for the sprite
-				width: 32,
+				width: 100,
 				//sets aside a height of 64 pixels for the sprite
-				height: 64,
+				height: 85,
 				//gives the sprite a width of 64. 
-				spritewidth : "32",
+				spritewidth : "100",
 				//gives the sprite a width of 64
-				spriteheight: "64",
+				spriteheight: "85",
 				//gives creep a form
 				getShape: function(){
-					return(new me.Rect(0, 0, 32, 64)).toPolygon();
+					return(new me.Rect(0, 0, 100, 85)).toPolygon();
 				}
 			}]);
 			//sets health to ten
@@ -433,7 +433,7 @@ game.FriendCreep = me.Entity.extend({
 			//sets the sprite's type
 			this.type = "FriendCreep";
 			//creates the walking animation
-			this.renderable.addAnimation("walk", [4, 5, 6, 7], 80);
+			this.renderable.addAnimation("walk", [0, 1, 2, 3, 4], 100);
 			//applies the walking animation
 			this.renderable.setCurrentAnimation("walk");
 		},
@@ -445,6 +445,7 @@ game.FriendCreep = me.Entity.extend({
 			this.now = new Date().getTime();
 			//makes the creep move
 			this.body.vel.x += this.body.accel.x *  me.timer.tick;
+			this.flipX(true);
 			//checks for collisions with player
 			me.collision.check(this, true, this.collideHandler.bind(this), true);
 			//basic update functions
