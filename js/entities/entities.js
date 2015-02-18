@@ -149,11 +149,49 @@ game.PlayerEntity = me.Entity.extend ({
 				this.pos.x = this.pos.x +1;
 			}
 			//runs if the player is attacking and its been 400 milliseconds since the last hit
-			if (this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000) {
+			if (this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000
+				//and if the y difference is less than 41
+				&& (Math.abs(ydif) <= 40) &&
+				//and if the player is facing the creep's baack or front
+				((xdif > 0 ) && this.facing === "left") || ((xdif < 0) && this.facing === "right")) {
 				//so the computer knows th eplayer just hit the tower
 				this.lastHit = this.now;
 				//calls the loseHealth function
 				response.b.loseHealth();
+			}
+		}
+		//runs if the player collides with the enemy creep
+		else if (response.b.type === 'EnemyCreep') {
+			//stores the horizantal distance from the player to the enemy creep
+			var xdif = this.pos.x - response.b.pos.x;
+			//stores the vertical distance from the player to the enemy creep
+			var ydif = this.pos.y - response.b.pos.y; 
+			//runs if the player is to the left of the enemy creep
+			if (xdif > 0) {
+				//pushes the player 1 unit to the right
+				this.pos.x = this.pos.x + 1;
+				//runs if the player is facing left
+				if (this.facing === "left") {
+					//stops the player's movement
+					this.body.vel.x = 0;
+				}
+			}
+			else {
+				//pushes the player 1 unit to the left
+				this.pos.x = this.pos.x - 1;
+				//runs if the player is facing right
+				if (this.facing === "right") {
+					//stops the player's movement
+					this.body.vel.x = 0;
+				}
+			}
+			//runs the loseHealth function only if the player is attacking the enemy creep
+			//can only take one life point per second
+			if (this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000) {
+				//updates the timer
+				this.lastHit = this.now;
+				//calls the loseHealth function with a parameter of 1
+				response.b.loseHealth(1);
 			}
 		}
 	}
@@ -330,10 +368,18 @@ game.EnemyCreep = me.Entity.extend({
 			//applies the walking animation
 			this.renderable.setCurrentAnimation("walk");
 		},
+		//subtracts health from enemy creep
+		loseHealth: function(damage) {
+			this.health = this.health - damage;
+		},
 
 
 		//delta is the change in time that's happening
 		update: function(delta){
+			//removes enemy creep sprtites once their health is at zero
+			if(this.health <= 0){
+				me.game.world.removeChild(this);
+			}
 			//updates attack
 			this.now = new Date().getTime();
 			//makes the creep move
@@ -453,7 +499,6 @@ game.FriendCreep = me.Entity.extend({
 			this._super(me.Entity, "update", [delta]);
 			return true;
 		},
-		//function for creeps' collisions
 		//function for creeps' collisions
 		collideHandler: function(response){
 			//runs if creep collides with tower 
