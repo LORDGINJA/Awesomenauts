@@ -11,6 +11,8 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.levelDirector.loadLevel("level01");
 		//calls the resetPlayer function with the parameters 0 and 420
 		this.resetPlayer(0, 420);
+		//calls the resetPlayer function with the parameters 0 and 420
+		this.resetEnemy(900, 420);
 		//adds gamemanager to world
 		var gamemanager = me.pool.pull("GameManager", 0 , 0, {});
 		//puts gamemanager into world
@@ -27,13 +29,13 @@ game.PlayScreen = me.ScreenObject.extend({
 		//makes an attack key
 		me.input.bindKey(me.input.KEY.SHIFT, "attack");
 		//Makes the right key into a variable
-		me.input.bindKey(me.input.KEY.RIGHT, "right");
+		me.input.bindKey(me.input.KEY.RIGHT, "rights");
 		//makes the right key into a variable
-		me.input.bindKey(me.input.KEY.LEFT, "left");
+		me.input.bindKey(me.input.KEY.LEFT, "lefts");
 		//makes the up key into a variable
-		me.input.bindKey(me.input.KEY.UP, "jump");
+		me.input.bindKey(me.input.KEY.UP, "jumps");
 		//makes space an attack key
-		me.input.bindKey(me.input.KEY.SPACE, "attack");
+		me.input.bindKey(me.input.KEY.SPACE, "attacks");
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -57,5 +59,12 @@ game.PlayScreen = me.ScreenObject.extend({
 		game.data.player = me.pool.pull("player", x, y, {});
 		//adds him to the game and sets his layer-level
 		me.game.world.addChild(game.data.player, 5);
+	},
+
+	resetEnemy: function(x, y){
+		//pulls the player entity from the pool
+		game.data.enemyHero = me.pool.pull("enemyHero", x, y, {});
+		//adds him to the game and sets his layer-level
+		me.game.world.addChild(game.data.enemyHero, 5);
 	}
 });

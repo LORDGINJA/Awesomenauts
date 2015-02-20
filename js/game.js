@@ -19,7 +19,8 @@ var game = {
 		playerMoveSpeed: 8,
 		creepMoveSpeed: 5,
 		gameManager: "",
-		player: ""
+		player: "",
+		enemyHero: ""
 	},
 	
 	
@@ -59,7 +60,7 @@ var game = {
 		//adds player base to pool
 		me.pool.register("PlayerBase", game.PlayerBaseEntity);
 		//adds enemy hero base to pool
-		me.pool.register("EnemyHero", game.EnemyHero, true);
+		me.pool.register("EnemyHero", game.EnemyHeroEntity, true);
 		//adds enemy base to pool
 		me.pool.register("EnemyBase", game.EnemyBaseEntity);
 		//adds enemy creep to pool
@@ -73,6 +74,6 @@ var game = {
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 
 		// Start the game with the title screen
-		me.state.change(me.state.MENU);
+		me.state.change(me.state.PLAY);
 	}
 };
