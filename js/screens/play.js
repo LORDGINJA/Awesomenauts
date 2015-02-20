@@ -15,6 +15,9 @@ game.PlayScreen = me.ScreenObject.extend({
 		var gamemanager = me.pool.pull("GameManager", 0 , 0, {});
 		//puts gamemanager into world
 		me.game.world.addChild(gamemanager, 0);
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//enemy hero hack
+
 		//makes the D key into a variable
 		me.input.bindKey(me.input.KEY.D, "right");
 		//makes the A key into a variable
@@ -29,8 +32,10 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.LEFT, "left");
 		//makes the up key into a variable
 		me.input.bindKey(me.input.KEY.UP, "jump");
-		//makes an attack key
-		me.input.bindKey(me.input.KEY.A, "attack");
+		//makes space an attack key
+		me.input.bindKey(me.input.KEY.SPACE, "attack");
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		// add our HUD to the game world
 		this.HUD = new game.HUD.Container();

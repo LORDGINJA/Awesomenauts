@@ -58,6 +58,8 @@ var game = {
 		me.pool.register("player", game.PlayerEntity, true);
 		//adds player base to pool
 		me.pool.register("PlayerBase", game.PlayerBaseEntity);
+		//adds enemy hero base to pool
+		me.pool.register("EnemyHero", game.EnemyHero, true);
 		//adds enemy base to pool
 		me.pool.register("EnemyBase", game.EnemyBaseEntity);
 		//adds enemy creep to pool
