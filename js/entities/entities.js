@@ -54,13 +54,8 @@ game.PlayerEntity = me.Entity.extend ({
 		this.now = new Date().getTime();
 		//runa when player's health reaches 0
 		if (this.health <= 0) {
-			//syas player is dead
+			//says player is dead
 			this.dead = true;
-			//starts player back at beginning
-			this.pos.x = 10;
-			this.pos.y = 10;
-			//resets the player's health
-			this.health = game.data.playerHealth;
 		}
 		//runs if the right key is pressed
 		if(me.input.isKeyPressed("right")){
@@ -576,16 +571,23 @@ game.GameManager = Object.extend({
 	update: function(){
 		//keeps track of timer
 		this.now = new Date().getTime();
+		//runs if player is dead
+		if(game.data.player.dead){
+			//takes the player off the screen
+			me.game.world.removeChild(game.data.player);
+			//runs the resetPlayer function
+			me.state.current().resetPlayer(10, 0);
+
+		}
 		//checks to make sure there is a multiple of ten. makes sure its been at least a second since last creep has been made
 		if(Math.round(this.now/1000)%10 === 0 && (this.now - this.lastCreep >= 1000)){
 			//updates timer
 			this.lastCreep = this.now;
-			//creates and inserts creep into worls
+			//creates and inserts creeps into world
 			var creepe = me.pool.pull("EnemyCreep", 1000, 0, {});
 			var creepf = me.pool.pull("FriendCreep", 0, 0, {});
-			//adds the creeps to the worls
+			//adds the creeps to the world
 			me.game.world.addChild(creepe, 5);
-			//
 			me.game.world.addChild(creepf, 5);
 		}
 		//updates
