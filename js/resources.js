@@ -16,7 +16,8 @@ game.resources = [
 	{name: "creep1", type:"image", src: "data/img/brainmonster.png"},
 	//loads the oneeye entity from the data folder, allowing it to display it on the map
 	{name: "creep2", type:"image", src: "data/img/gloop.png"},
-
+	//loads the title-screen image from the data folder, allowing it to display it on the map
+	{name: "title-screen", type:"image", src: "data/img/title.png"},
 	/* Atlases 
 	 * @example
 	 * {name: "example_tps", type: "tps", src: "data/img/example_tps.json"},
