@@ -205,6 +205,7 @@ game.PlayerEntity = me.Entity.extend ({
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //enemy hero hack
 // enemy hero class
 game.EnemyHeroEntity = me.Entity.extend ({
@@ -337,27 +338,27 @@ game.EnemyHeroEntity = me.Entity.extend ({
 	//function for when player collides with tower
 	collideHandler: function(response){
 		//runs if the player collides with the enemy base
-		if (response.b.type === 'PlayerBaseEntity') {
+		if (response.b.type === 'PlayerBase') {
 			//represents the difference between player's y distance and enemy's y distance
 			var ydif = this.pos.y - response.b.pos.y;
 			//represents the difference between player's and enemy base's x distance
 			var xdif = this.pos.x - response.b.pos.x;
 			//runs if the player is on top of the enemy base
-			if (ydif < -40 && xdif < 60 && xdif > -35) {
+			if (ydif < -40 && xdif < 76 && xdif > -33) {
 				//stops the player from moving down
 				this.body.falling = false;
 				//keeps the player from falling through the tower
 				this.body.vel.y = -1;
 			}
 			//runs if the player's x position is 37 units away from the tower while facing right 
-			else if (xdif > -36 && this.facing === "right" && xdif < 0) {
+			else if (xdif > -33 && this.facing === "right" && xdif < 0) {
 				//stops player from moving 
 				this.body.vel.x = 0;
 				//moves player slightly away from tower
 				this.pos.x = this.pos.x -1;
 			}
 			//runs if the player's x position is 74 units away from the tower while facing left 
-			else if (xdif < 75 && this.facing === "left" && xdif > 0) {
+			else if (xdif < 76 && this.facing === "left" && xdif > 0) {
 				//stops player from moving 
 				this.body.vel.x = 0;
 				//moves player slightly away from tower
@@ -412,7 +413,9 @@ game.EnemyHeroEntity = me.Entity.extend ({
 	}
 });
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //tower class
 game.PlayerBaseEntity = me.Entity.extend({
 	init: function(x, y, settings){
@@ -654,7 +657,8 @@ game.EnemyCreep = me.Entity.extend({
 });
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 //friend creep hack one
@@ -699,6 +703,10 @@ game.FriendCreep = me.Entity.extend({
 			this.renderable.setCurrentAnimation("walk");
 		},
 
+		//subtracts health from friend creep
+		loseHealth: function(damage) {
+			this.health = this.health - damage;
+		},
 
 		//delta is the change in time that's happening
 		update: function(delta){
@@ -734,6 +742,30 @@ game.FriendCreep = me.Entity.extend({
 					response.b.loseHealth(game.data.friendCreepAttack);
 				}
 			}
+
+			else if (response.b.type === 'EnemyHeroEntity') {
+				//see where the player is compared to the creep
+				var xdif = this.pos.x - response.b.pos.x;
+				//makes the creep attack
+				this.attacking = true;
+				//timer that says when last attacked
+				//this.lastAttacking = this.now;
+				
+				//only runs if the creep's face is right in front of the orc or under
+				if (xdif < 0) {
+					//prevents the creep from walking through the player
+					this.body.vel.x = 0;
+					//pushes the creep back a little to maintain its position
+					this.pos.x = this.pos.x - 1;
+				}
+				//Only allows the creep to hit the tower once every second and if the player is not behind the creep
+				if ((this.now - this.lastHit >= game.data.creepAttackTimer) && xdif > 0) {
+					//updates the lastHit timer
+					this.lastHit = this.now;
+					//runs the losehealth function, with 1 point damage
+					response.b.loseHealth(game.data.enemyCreepAttack);
+				}
+			}
 			// else if (response.b.type === 'EnemyCreep') {
 			// 	//see where the player is compared to the creep
 			// 	var xdif = this.pos.x - response.b.pos.x;
@@ -762,7 +794,9 @@ game.FriendCreep = me.Entity.extend({
 });
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 //class that runs all the timers and occurences that aren't inside any of the other entities
 game.GameManager = Object.extend({
