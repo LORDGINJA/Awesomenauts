@@ -6,6 +6,7 @@ var game = {
 	data : {
 		// score
 		score : 0,
+		paused: false,
 		enemyBaseHealth : 10,
 		playerBaseHealth: 10,
 		enemyCreepHealth: 10,
@@ -78,6 +79,11 @@ var game = {
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//pause hack
+		me.state.set(me.state.PAUSE, new game.PauseScreen());
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 
 		// Start the game with the title screen
 		me.state.change(me.state.MENU);

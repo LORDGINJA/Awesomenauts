@@ -815,7 +815,7 @@ game.GameManager = Object.extend({
 		//keeps track of last time creep was made
 		this.lastCreep = new Date().getTime();
 		//says the game is not paused
-		this.paused = false;
+		this.paused = game.data.paused;
 		//keeps the function updating
 		this.alwaysUpdate = true;
 	},
@@ -860,9 +860,14 @@ game.GameManager = Object.extend({
 			me.game.world.addChild(creepe, 5);
 			me.game.world.addChild(creepf, 5);
 		} 
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//pause hack
 		if (me.input.isKeyPressed("pause")) {
-			this.paused = true;
+			game.data.paused = true;
+			pausedGame();
 		}
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 		//updates
 		return true;
 	}
