@@ -24,7 +24,9 @@ game.PlayerEntity = me.Entity.extend ({
 		//sets the player's health to 100
 		this.health = game.data.playerHealth;
 		//says the player is not dead
-		this.death = false;
+		this.dead = false;
+		//sets attack
+		this.attack = game.data.playerAttack;
 		//sets movemet speed. allows player to move horizantally and vertically
 		this.body.setVelocity(game.data.playerMoveSpeed, 20);
 		//keeps track of which way the character is going
@@ -197,6 +199,12 @@ game.PlayerEntity = me.Entity.extend ({
 			if (this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer) {
 				//updates the timer
 				this.lastHit = this.now;
+				//runs if the creep's health is less than the player's attack
+				if (response.b.health <= game.data.playerAttack) {
+					//adds one gold
+					game.data.gold += 1;
+					console.log("Current gold: " + game.data.gold);
+				}
 				//calls the loseHealth function with a parameter of 1
 				response.b.loseHealth(game.data.playerAttack);
 			}
@@ -233,7 +241,7 @@ game.EnemyHeroEntity = me.Entity.extend ({
 		//sets the player's health to 100
 		this.health = game.data.playerHealth;
 		//says the player is not dead
-		this.death = false;
+		this.dead = false;
 		//sets movemet speed. allows player to move horizantally and vertically
 		this.body.setVelocity(game.data.playerMoveSpeed, 20);
 		//keeps track of which way the character is going
@@ -806,6 +814,8 @@ game.GameManager = Object.extend({
 		this.now = new Date().getTime();
 		//keeps track of last time creep was made
 		this.lastCreep = new Date().getTime();
+		//says the game is not paused
+		this.paused = false;
 		//keeps the function updating
 		this.alwaysUpdate = true;
 	},
@@ -834,6 +844,12 @@ game.GameManager = Object.extend({
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		//checks to make sure there is a multiple of ten. makes sure its been at least a second since last creep has been made
+		if(Math.round(this.now/1000)%20 === 0 && (this.now - this.lastCreep >= 1000)){
+			game.data.gold += 1;
+			console.log("Current gold: " + game.data.gold);
+		}
+
+		//checks to make sure there is a multiple of ten. makes sure its been at least a second since last creep has been made
 		if(Math.round(this.now/1000)%10 === 0 && (this.now - this.lastCreep >= 1000)){
 			//updates timer
 			this.lastCreep = this.now;
@@ -843,6 +859,9 @@ game.GameManager = Object.extend({
 			//adds the creeps to the world
 			me.game.world.addChild(creepe, 5);
 			me.game.world.addChild(creepf, 5);
+		} 
+		if (me.input.isKeyPressed("pause")) {
+			this.paused = true;
 		}
 		//updates
 		return true;

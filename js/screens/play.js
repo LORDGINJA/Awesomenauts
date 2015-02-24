@@ -27,7 +27,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		//makes the W key into a variable
 		me.input.bindKey(me.input.KEY.W, "jump");
 		//makes an attack key
-		me.input.bindKey(me.input.KEY.SHIFT, "attack");
+		me.input.bindKey(me.input.KEY.V, "attack");
 		//Makes the right key into a variable
 		me.input.bindKey(me.input.KEY.RIGHT, "rights");
 		//makes the right key into a variable
@@ -38,6 +38,12 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.SPACE, "attacks");
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//pause button hack
+		//makes space an attack key
+		me.input.bindKey(me.input.KEY.P, "pause");
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 		// add our HUD to the game world
 		this.HUD = new game.HUD.Container();

@@ -30,6 +30,14 @@ game.resources = [
 
 	//loads the title-screen image from the data folder, allowing it to display it on the map
 	{name: "title-screen", type:"image", src: "data/img/skyrim.jpg"},
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//pause screen hack
+	//loads the pause-screen image from the data folder, allowing it to display it on the map
+	{name: "pause-screen", type:"image", src: "data/img/paused.jpg"},
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	/* Atlases 
 	 * @example
 	 * {name: "example_tps", type: "tps", src: "data/img/example_tps.json"},
