@@ -18,9 +18,9 @@ game.TitleScreen = me.ScreenObject.extend({
 			//function that sets up the writing
 			draw: function(renderer){
 				//inserts the message "Awesomenauts!" and sets where writing starts
-				this.font.draw(renderer.getContext(), "Awesomenauts!", 450, 130);
+				this.font.draw(renderer.getContext(), "Awesomenauts!", 42, 60);
 				//inserts the message "Press ENTER to play!" and sets where writing starts
-				this.font.draw(renderer.getContext(), "Press ENTER to play!", 250, 530);
+				this.font.draw(renderer.getContext(), "ENTER to play!", 700, 60);
 			}
 		})));
 		//listens to see if enter button is pressed

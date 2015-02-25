@@ -22,6 +22,7 @@ var game = {
 		gameManager: "",
 		player: "",
 		enemyHero: "",
+		auseScreen: "",
 		exp: 0,
 		gold: 0,
 		exp1: 0,
