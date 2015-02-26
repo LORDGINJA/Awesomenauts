@@ -31,3 +31,9 @@ body {
 	image-rendering: optimize-contrast;
 	-ms-interpolation-mode: nearest-neighbor;
 }
+
+
+@font-face {
+	font-family: GEUVARA_.TTF; 
+	src: url('../fonts/GEUVARA_.TTF');
+}

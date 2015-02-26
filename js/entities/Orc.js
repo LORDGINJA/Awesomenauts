@@ -3,7 +3,7 @@ game.PlayerEntity = me.Entity.extend ({
 	//constructor function 
 	init: function(x, y, settings){
 		//calls setSuper function
-		this.setSuper();
+		this.setSuper(x, y);
 		//calls setPlayerTimers function
 		this.setPlayerTimers();
 		//calls setAttributes function
@@ -21,7 +21,7 @@ game.PlayerEntity = me.Entity.extend ({
 	},
 
 	//sets up the super class
-	setSuper: function(){
+	setSuper: function(x, y){
 		//reachers the constructor function for enitity
 		this._super(me.Entity, 'init', [x, y, {
 			//settings. shoes the player
@@ -181,82 +181,90 @@ game.PlayerEntity = me.Entity.extend ({
 	collideHandler: function(response){
 		//runs if the player collides with the enemy base
 		if (response.b.type === 'EnemyBaseEntity') {
-			//represents the difference between player's y distance and enemy's y distance
-			var ydif = this.pos.y - response.b.pos.y;
-			//represents the difference between player's and enemy base's x distance
-			var xdif = this.pos.x - response.b.pos.x;
-			//runs if the player is on top of the enemy base
-			if (ydif < -40 && xdif < 60 && xdif > -35) {
-				//stops the player from moving down
-				this.body.falling = false;
-				//keeps the player from falling through the tower
-				this.body.vel.y = -1;
-			}
-			//runs if the player's x position is 37 units away from the tower while facing right 
-			else if (xdif > -36 && this.facing === "right" && xdif < 0) {
-				//stops player from moving 
-				this.body.vel.x = 0;
-				//moves player slightly away from tower
-				this.pos.x = this.pos.x -1;
-			}
-			//runs if the player's x position is 74 units away from the tower while facing left 
-			else if (xdif < 75 && this.facing === "left" && xdif > 0) {
-				//stops player from moving 
-				this.body.vel.x = 0;
-				//moves player slightly away from tower
-				this.pos.x = this.pos.x +1;
-			}
-			//runs if the player is attacking and its been 1000 milliseconds since the last hit
-			if (this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer
-				//and if the y difference is less than 41
-				&& (Math.abs(ydif) <= 40) &&
-				//and if the player is facing the creep's baack or front
-				((xdif > 0 ) && this.facing === "left") || ((xdif < 0) && this.facing === "right")) {
-				//so the computer knows th eplayer just hit the tower
-				this.lastHit = this.now;
-				//calls the loseHealth function and sets the parameter to the playerAttack variable
-				response.b.loseHealth(game.data.playerAttack);
-			}
+			this.collideWithEnemyBase(response);
 		}
 		//runs if the player collides with the enemy creep
 		else if (response.b.type === 'EnemyCreep') {
-			//stores the horizantal distance from the player to the enemy creep
-			var xdif = this.pos.x - response.b.pos.x;
-			//stores the vertical distance from the player to the enemy creep
-			var ydif = this.pos.y - response.b.pos.y; 
-			//runs if the player is to the left of the enemy creep
-			if (xdif > 0) {
-				//pushes the player 1 unit to the right
-				this.pos.x = this.pos.x + 1;
-				//runs if the player is facing left
-				if (this.facing === "left") {
-					//stops the player's movement
-					this.body.vel.x = 0;
-				}
+			this.collideWithEnemyCreep(response);
+		}
+	},
+
+	collideWithEnemyBase: function(response){
+		//represents the difference between player's y distance and enemy's y distance
+		var ydif = this.pos.y - response.b.pos.y;
+		//represents the difference between player's and enemy base's x distance
+		var xdif = this.pos.x - response.b.pos.x;
+		//runs if the player is on top of the enemy base
+		if (ydif < -40 && xdif < 60 && xdif > -35) {
+			//stops the player from moving down
+			this.body.falling = false;
+			//keeps the player from falling through the tower
+			this.body.vel.y = -1;
+		}
+		//runs if the player's x position is 37 units away from the tower while facing right 
+		else if (xdif > -36 && this.facing === "right" && xdif < 0) {
+			//stops player from moving 
+			this.body.vel.x = 0;
+			//moves player slightly away from tower
+			this.pos.x = this.pos.x -1;
+		}
+		//runs if the player's x position is 74 units away from the tower while facing left 
+		else if (xdif < 75 && this.facing === "left" && xdif > 0) {
+			//stops player from moving 
+			this.body.vel.x = 0;
+			//moves player slightly away from tower
+			this.pos.x = this.pos.x +1;
+		}
+		//runs if the player is attacking and its been 1000 milliseconds since the last hit
+		if (this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer
+			//and if the y difference is less than 41
+			&& (Math.abs(ydif) <= 40) &&
+			//and if the player is facing the creep's baack or front
+			((xdif > 0 ) && this.facing === "left") || ((xdif < 0) && this.facing === "right")) {
+			//so the computer knows th eplayer just hit the tower
+			this.lastHit = this.now;
+			//calls the loseHealth function and sets the parameter to the playerAttack variable
+			response.b.loseHealth(game.data.playerAttack);
+		}
+	},
+
+	collideWithEnemyCreep: function(response){
+		//stores the horizantal distance from the player to the enemy creep
+		var xdif = this.pos.x - response.b.pos.x;
+		//stores the vertical distance from the player to the enemy creep
+		var ydif = this.pos.y - response.b.pos.y; 
+		//runs if the player is to the left of the enemy creep
+		if (xdif > 0) {
+			//pushes the player 1 unit to the right
+			this.pos.x = this.pos.x + 1;
+			//runs if the player is facing left
+			if (this.facing === "left") {
+				//stops the player's movement
+				this.body.vel.x = 0;
 			}
-			else {
-				//pushes the player 1 unit to the left
-				this.pos.x = this.pos.x - 1;
-				//runs if the player is facing right
-				if (this.facing === "right") {
-					//stops the player's movement
-					this.body.vel.x = 0;
-				}
+		}
+		else {
+			//pushes the player 1 unit to the left
+			this.pos.x = this.pos.x - 1;
+			//runs if the player is facing right
+			if (this.facing === "right") {
+				//stops the player's movement
+				this.body.vel.x = 0;
 			}
-			//runs the loseHealth function only if the player is attacking the enemy creep
-			//can only take one life point per second
-			if (this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer) {
-				//updates the timer
-				this.lastHit = this.now;
-				//runs if the creep's health is less than the player's attack
-				if (response.b.health <= game.data.playerAttack) {
-					//adds one gold
-					game.data.gold += 1;
-					console.log("Current gold: " + game.data.gold);
-				}
-				//calls the loseHealth function with a parameter of 1
-				response.b.loseHealth(game.data.playerAttack);
+		}
+		//runs the loseHealth function only if the player is attacking the enemy creep
+		//can only take one life point per second
+		if (this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer) {
+			//updates the timer
+			this.lastHit = this.now;
+			//runs if the creep's health is less than the player's attack
+			if (response.b.health <= game.data.playerAttack) {
+				//adds one gold
+				game.data.gold += 1;
+				console.log("Current gold: " + game.data.gold);
 			}
+			//calls the loseHealth function with a parameter of 1
+			response.b.loseHealth(game.data.playerAttack);
 		}
 	}
 });
