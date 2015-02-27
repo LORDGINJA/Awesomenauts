@@ -13,7 +13,7 @@ game.TitleScreen = me.ScreenObject.extend({
 				//calls super class 
 				this._super(me.Renderable, 'init', [510, 30, me.game.viewport.width, me.game.viewport.height]);
 				//sets the font to arial, the size 46, and colors it white
-				this.font = new me.Font("flame", 46, "white");
+				this.font = new me.Font("flame", 46, "#DE7E18");
 			},
 			//function that sets up the writing
 			draw: function(renderer){
