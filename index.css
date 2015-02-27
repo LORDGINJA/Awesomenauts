@@ -34,6 +34,6 @@ body {
 
 
 @font-face {
-	font-family: GEUVARA_.TTF; 
-	src: url('../fonts/GEUVARA_.TTF');
+	font-family: flame; 
+	src: local("flame Condensed"), url('./fonts/flame.TTF');
 }
