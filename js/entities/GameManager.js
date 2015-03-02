@@ -1,5 +1,5 @@
 //class that runs all the timers and occurences that aren't inside any of the other entities
-game.GameManager = Object.extend({
+game.GameTimeManager = Object.extend({
 	//constructor function
 	init: function(x, y, settings){
 		//sets timer
@@ -15,14 +15,9 @@ game.GameManager = Object.extend({
 	update: function(){
 		//keeps track of timer
 		this.now = new Date().getTime();
-		//runs if player is dead
-		if(game.data.player.dead){
-			//takes the player off the screen
-			me.game.world.removeChild(game.data.player);
-			//runs the resetPlayer function
-			me.state.current().resetPlayer(10, 0);
-
-		}
+		
+		this.goldTimerCheck();
+		this.creepTimerCheck();
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//enemy hero hack
@@ -35,12 +30,30 @@ game.GameManager = Object.extend({
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+		
+
+		
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//pause hack
+		// if (me.input.isKeyPressed("pause")) {
+		// 	game.data.paused = true;
+		// 	me.state.change(me.state.PAUSE);
+		// }
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+		//updates
+		return true;
+	},
+
+	goldTimerCheck: function(){
 		//checks to make sure there is a multiple of ten. makes sure its been at least a second since last creep has been made
 		if(Math.round(this.now/1000)%20 === 0 && (this.now - this.lastCreep >= 1000)){
 			game.data.gold += 1;
 			console.log("Current gold: " + game.data.gold);
 		}
+	},
 
+	creepTimerCheck: function(){
 		//checks to make sure there is a multiple of ten. makes sure its been at least a second since last creep has been made
 		if(Math.round(this.now/1000)%10 === 0 && (this.now - this.lastCreep >= 1000)){
 			//updates timer
@@ -52,15 +65,23 @@ game.GameManager = Object.extend({
 			me.game.world.addChild(creepe, 5);
 			me.game.world.addChild(creepf, 5);
 		} 
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//pause hack
-		// if (me.input.isKeyPressed("pause")) {
-		// 	game.data.paused = true;
-		// 	me.state.change(me.state.PAUSE);
-		// }
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-		//updates
-		return true;
 	}
 });
+
+
+game.HeroDeathManager = Object.extend({
+	init: function(x, y, settings){
+		this.alwaysUpdate = true;
+	},
+
+	update: function(){
+		//runs if player is dead
+		if(game.data.player.dead){
+			//takes the player off the screen
+			me.game.world.removeChild(game.data.player);
+			//runs the resetPlayer function
+			me.state.current().resetPlayer(10, 0);
+
+		}
+	}
+})
