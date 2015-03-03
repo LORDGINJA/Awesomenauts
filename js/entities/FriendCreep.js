@@ -72,7 +72,7 @@ game.FriendCreep = me.Entity.extend({
 				//pushes the creep back a little to maintain its position
 				this.pos.x = this.pos.x - 1;
 				//Only allows the creep to hit the tower once every second
-				if ((this.now - this.lastHit >= game.data.friendCreepAttack)) {
+				if ((this.now - this.lastHit >= game.data.creepAttackTimer)) {
 					//updates the lastHit timer
 					this.lastHit = this.now;
 					//runs the losehealth function, with 1 point damage
@@ -100,7 +100,7 @@ game.FriendCreep = me.Entity.extend({
 					//updates the lastHit timer
 					this.lastHit = this.now;
 					//runs the losehealth function, with 1 point damage
-					response.b.loseHealth(game.data.enemyCreepAttack);
+					response.b.loseHealth(game.data.friendCreepAttack);
 				}
 			}
 

@@ -149,12 +149,12 @@ game.PlayerEntity = me.Entity.extend ({
 			this.body.vel.y -= this.body.accel.y * me.timer.tick;
 		}
 
-		me.input.isKeyPressed("attack");
+		//me.input.isKeyPressed("attack");
 	},
 
 	setAnimation: function(){
 		//runs if the attack key is pressed
-		if(this.attacking){
+		if(me.input.isKeyPressed("attack")){
 			if(!this.renderable.isCurrentAnimation("attack")){
 				//sets current animation to attack. goes back to idle oncethe attack is over it goes back to idle
 				this.renderable.setCurrentAnimation("attack", "idle")

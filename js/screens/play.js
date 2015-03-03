@@ -90,13 +90,15 @@ game.PlayScreen = me.ScreenObject.extend({
 	// 		me.state.change(me.state.PAUSE);
 	// 	}
 	// }
-	this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge){
-			//runs if enter button is pressed
-			if (action === "pause") {
-				//goes to play screen
-				me.state.change(me.state.PAUSE);
-			}
+	pauseGame: function(){
+		this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge){
+				//runs if enter button is pressed
+				if (action === "pause") {
+					//goes to play screen
+					me.state.change(me.state.PAUSE);
+				}
 		});
+	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 });
