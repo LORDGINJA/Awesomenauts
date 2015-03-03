@@ -42,6 +42,8 @@ game.PlayerBaseEntity = me.Entity.extend({
 		if(this.health <= 0){
 			//makes the tower "broken"
 			this.broken = true;
+			//if player base breaks player loses
+			game.data.win = false;
 			//sets animation for "broken"
 			this.renderable.setCurrentAnimation("broken");
 		} 

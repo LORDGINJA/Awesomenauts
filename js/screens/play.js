@@ -22,6 +22,11 @@ game.PlayScreen = me.ScreenObject.extend({
 		var gameTimeManager = me.pool.pull("GameTimeManager", 0 , 0, {});
 		//puts gamemanager into world
 		me.game.world.addChild(gameTimeManager, 0);
+
+		//adds gamemanager to world
+		var ExperienceManager = me.pool.pull("ExperienceManager", 0 , 0, {});
+		//puts gamemanager into world
+		me.game.world.addChild(ExperienceManager, 0);
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//enemy hero hack
 
@@ -85,6 +90,13 @@ game.PlayScreen = me.ScreenObject.extend({
 	// 		me.state.change(me.state.PAUSE);
 	// 	}
 	// }
+	this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge){
+			//runs if enter button is pressed
+			if (action === "pause") {
+				//goes to play screen
+				me.state.change(me.state.PAUSE);
+			}
+		});
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 });

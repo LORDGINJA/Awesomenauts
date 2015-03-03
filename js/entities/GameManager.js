@@ -36,8 +36,11 @@ game.GameTimeManager = Object.extend({
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//pause hack
 		// if (me.input.isKeyPressed("pause")) {
-		// 	game.data.paused = true;
 		// 	me.state.change(me.state.PAUSE);
+
+		// 	if (input.isKeyPressed("pause")) {
+		// 		me.state.change(me.state.PLAY);
+		// 	}
 		// }
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -83,5 +86,27 @@ game.HeroDeathManager = Object.extend({
 			me.state.current().resetPlayer(10, 0);
 
 		}
+
+		return true;
 	}
-})
+});
+
+game.ExperienceManager = Object.extend({
+	init: function(x, y, settings){
+		this.alwaysUpdate = true;
+		this.gameOver = false;
+	},
+	update: function(){
+		if (game.data.win === true && !this.gameOver) {
+			game.data.exp += 10;
+			this.gameOver = true;
+		}
+		else if (game.data.win === false && !this.gameOver) {
+			game.data.exp += 1;
+			this.gameOver = true;
+		}
+
+		console.log(game.data.exp);
+		return true;
+	}
+});
