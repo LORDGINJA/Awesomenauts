@@ -9,9 +9,9 @@ var game = {
 		paused: false,
 		enemyBaseHealth : 10,
 		playerBaseHealth: 10,
-		enemyCreepHealth: 10,
+		enemyCreepHealth: 5,
 		playerHealth: 10,
-		friendCreepHealth: 10,
+		friendCreepHealth: 5,
 		enemyCreepAttack: 1,
 		friendCreepAttack: 1,
 		playerAttack: 1,
@@ -88,7 +88,7 @@ var game = {
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//pause hack
-		//me.state.set(me.state.PAUSE, new game.PauseScreen());
+		me.state.set(me.state.PAUSE, new game.PauseScreen());
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 

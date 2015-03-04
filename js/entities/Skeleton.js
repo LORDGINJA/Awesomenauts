@@ -159,9 +159,10 @@ game.EnemyHeroEntity = me.Entity.extend ({
 			//runs if the player is attacking and its been 1000 milliseconds since the last hit
 			if (this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer
 				//and if the y difference is less than 41
-				&& (Math.abs(ydif) <= 40) &&
-				//and if the player is facing the creep's baack or front
-				((xdif > 0 ) && this.facing === "left") || ((xdif < 0) && this.facing === "right")) {
+				// && (Math.abs(ydif) <= 40) &&
+				// //and if the player is facing the creep's baack or front
+				// ((xdif > 0 ) && this.facing === "left") || ((xdif < 0) && this.facing === "right")
+				) {
 				//so the computer knows th eplayer just hit the tower
 				this.lastHit = this.now;
 				//calls the loseHealth function and sets the parameter to the playerAttack variable

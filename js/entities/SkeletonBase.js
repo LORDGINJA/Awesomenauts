@@ -58,9 +58,9 @@ game.EnemyBaseEntity = me.Entity.extend({
 		
 	},
 
-	loseHealth: function(){
+	loseHealth: function(damage){
 		//makes the tower loose 1 health on each hit
-		this.health--;
+		this.health = this.health - damage;
 	}
 });
 
