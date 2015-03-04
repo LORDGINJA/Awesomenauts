@@ -35,9 +35,9 @@ game.GameTimeManager = Object.extend({
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//pause hack
-		if (me.input.isKeyPressed("pause")) {
-			this.pauseGame();
-		}
+		// if (me.input.isKeyPressed("pause")) {
+		// 	this.pauseGame();
+		// }
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 		//updates
@@ -94,15 +94,28 @@ game.ExperienceManager = Object.extend({
 	},
 	update: function(){
 		if (game.data.win === true && !this.gameOver) {
-			game.data.exp += 10;
-			this.gameOver = true;
+			this.gameOver(true);
 		}
 		else if (game.data.win === false && !this.gameOver) {
-			game.data.exp += 1;
-			this.gameOver = true;
+			this.gameOver(false);
 		}
 
-		console.log(game.data.exp);
 		return true;
+	},
+
+	gameOver: function(win){
+		if (win) {
+			//adds 10 the the exp variable
+			game.data.exp += 10;
+		}
+		else{
+			//adds 1 the the exp variable
+			game.data.exp += 1;
+		}
+
+		//says game's over
+		this.gameOver = true;
+		//saves the value of the exp variable
+		me.save.exp = game.data.exp;
 	}
 });
