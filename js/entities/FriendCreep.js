@@ -59,6 +59,7 @@ game.FriendCreep = me.Entity.extend({
 			this._super(me.Entity, "update", [delta]);
 			return true;
 		},
+
 		//function for creeps' collisions
 		collideHandler: function(response){
 			//runs if creep collides with tower 
@@ -109,9 +110,6 @@ game.FriendCreep = me.Entity.extend({
 				var xdif = this.pos.x - response.b.pos.x;
 				//makes the creep attack
 				this.attacking = true;
-				//timer that says when last attacked
-				//this.lastAttacking = this.now;
-				
 				//only runs if the creep's face is right in front of the orc or under
 				if (xdif > 0) {
 					//prevents the creep from walking through the player

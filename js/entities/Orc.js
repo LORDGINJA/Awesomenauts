@@ -61,7 +61,6 @@ game.PlayerEntity = me.Entity.extend ({
 		this.body.setVelocity(game.data.playerMoveSpeed, 20);
 	},
 
-
 	setFlags: function(){
 		//says the player is not dead
 		this.dead = false;
@@ -80,18 +79,16 @@ game.PlayerEntity = me.Entity.extend ({
 		this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72], 80);
 	},
 
-
 	//delta is the change in time that's happening
 	update: function(delta){
 		//keeps timer updated
 		this.now = new Date().getTime();
-
+		//calls named function
 		this.dead = this.checkIfDead();
-
+		//calls named function
 		this.checkKeyPressesAndMove();		
-
+		//calls named function
 		this.setAnimation();
-		
 		//checks to see if player is colliding with base
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		//tells above code to work
@@ -100,6 +97,7 @@ game.PlayerEntity = me.Entity.extend ({
 		this._super(me.Entity, "update", [delta]);
 		return true;
 	},
+
 	//runs when called
 	loseHealth: function(damage){
 		//subtracts set amount of health
@@ -126,7 +124,6 @@ game.PlayerEntity = me.Entity.extend ({
 			//flips the animation
 			this.flipX(true);
 		}
-
 		else if(me.input.isKeyPressed("left")){
 			//when right key is pressed, adds to the position of my x by the velocity defined above in setVelocity and multiplying it by me.timer.tick
 			//me.timer.tick makes the movement look smooth
@@ -136,7 +133,6 @@ game.PlayerEntity = me.Entity.extend ({
 			//doesn't flip the animation
 			this.flipX(false);
 		}
-
 		//if the right key isn't being pressed, the player doesn't move
 		else{
 			this.body.vel.x = 0;
@@ -148,8 +144,6 @@ game.PlayerEntity = me.Entity.extend ({
 			//sets velocity of the jump and the time
 			this.body.vel.y -= this.body.accel.y * me.timer.tick;
 		}
-
-		//me.input.isKeyPressed("attack");
 	},
 
 	setAnimation: function(){
@@ -162,7 +156,6 @@ game.PlayerEntity = me.Entity.extend ({
 				this.renderable.setAnimationFrame();
 			}
 		}
-
 		//runs if the player is moving horizantally and not attacking
 		else if(this.body.vel.x !== 0 && !this.renderable.isCurrentAnimation("attack")){
 			//runs if the player isn't already running the walk animation
@@ -177,6 +170,7 @@ game.PlayerEntity = me.Entity.extend ({
 			this.renderable.setCurrentAnimation("idle");
 		}
 	},
+
 	//function for when player collides with tower
 	collideHandler: function(response){
 		//runs if the player collides with the enemy base
@@ -216,12 +210,7 @@ game.PlayerEntity = me.Entity.extend ({
 			this.pos.x = this.pos.x +1;
 		}
 		//runs if the player is attacking and its been 1000 milliseconds since the last hit
-		if (this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer
-			//and if the y difference is less than 41
-			// && (Math.abs(ydif) <= 40) &&
-			// //and if the player is facing the creep's baack or front
-			// ((xdif > 0 ) && this.facing === "left") || ((xdif < 0) && this.facing === "right")
-			) {
+		if (this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer) {
 			//so the computer knows th eplayer just hit the tower
 			this.lastHit = this.now;
 			//calls the loseHealth function and sets the parameter to the playerAttack variable

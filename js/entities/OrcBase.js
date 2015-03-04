@@ -33,9 +33,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 		this.renderable.addAnimation("broken", [1]);
 		//sets the desfault animation
 		this.renderable.setCurrentAnimation("idle");
-
 	},	
-
 
 	update:function(delta){
 		//runs if health is less than or equal to 0
@@ -53,11 +51,13 @@ game.PlayerBaseEntity = me.Entity.extend({
 		this._super(me.Entity, "update", [delta]);
 		return true;
 	},
+
 	//runs whenever called on
 	loseHealth: function(damage){
 		//subtracts set damage amount from health everytime ran
 		this.health = this.health - damage;
 	},
+
 	//function that runs when base is touched
 	onCollision: function(){
 

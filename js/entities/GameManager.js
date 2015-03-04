@@ -29,9 +29,6 @@ game.GameTimeManager = Object.extend({
 
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-		
-
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//pause hack
@@ -92,6 +89,7 @@ game.ExperienceManager = Object.extend({
 		this.alwaysUpdate = true;
 		this.gameOver = false;
 	},
+
 	update: function(){
 		if (game.data.win === true && !this.gameOver) {
 			this.gameOver(true);
@@ -99,7 +97,6 @@ game.ExperienceManager = Object.extend({
 		else if (game.data.win === false && !this.gameOver) {
 			this.gameOver(false);
 		}
-
 		return true;
 	},
 
@@ -112,7 +109,6 @@ game.ExperienceManager = Object.extend({
 			//adds 1 the the exp variable
 			game.data.exp += 1;
 		}
-
 		//says game's over
 		this.gameOver = true;
 		//saves the value of the exp variable

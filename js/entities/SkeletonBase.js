@@ -36,7 +36,6 @@ game.EnemyBaseEntity = me.Entity.extend({
 		this.renderable.setCurrentAnimation("idle");
 	},	
 
-
 	update:function(delta){
 		//runs if health is less than or equal to 0
 		if(this.health<=0){
@@ -53,6 +52,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 		this._super(me.Entity, "update", [delta]);
 		return true;
 	},
+	
 	//function that runs when base is touched
 	onCollision: function(){
 		
