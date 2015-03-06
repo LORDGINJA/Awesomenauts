@@ -9,6 +9,8 @@ game.PlayScreen = me.ScreenObject.extend({
 
 		//loads level
 		me.levelDirector.loadLevel("level01");
+		console.log(game.data.exp);
+		console.log(game.data.exp2);
 		//calls the resetPlayer function with the parameters 0 and 420
 		this.resetPlayer(0, 420);
 		//calls the resetPlayer function with the parameters 0 and 420

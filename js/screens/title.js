@@ -63,6 +63,13 @@ game.TitleScreen = me.ScreenObject.extend({
 			},
 
 			newGame: function(){
+				// sets saved exp values to the variables in the new game
+				game.data.exp = me.save.exp;
+				game.data.exp1 = me.save.exp1;
+				game.data.exp2 = me.save.exp2;
+				game.data.exp3 = me.save.exp3;
+				game.data.exp4 = me.save.exp4;
+
 				//gets rid of the mouse as an object
 				me.input.releasePointerEvent('pointerdown', this);
 				//sets screen to play screen
