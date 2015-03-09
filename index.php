@@ -40,6 +40,7 @@
 
 		<script type="text/javascript" src="js/screens/title.js"></script>
 		<script type="text/javascript" src="js/screens/play.js"></script>
+		<!-- links the exp-screen -->
 		<script type="text/javascript" src="js/screens/spendExp.js"></script>
 
 		<!-- /build -->

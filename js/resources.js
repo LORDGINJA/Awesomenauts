@@ -30,7 +30,7 @@ game.resources = [
 
 	//loads the title-screen image from the data folder, allowing it to display it on the map
 	{name: "title-screen", type:"image", src: "data/img/skyrim.jpg"},
-	//loads the title-screen image from the data folder, allowing it to display it on the map
+	//loads the exp-screen image from the data folder, allowing it to display it on the map
 	{name: "exp-screen", type:"image", src: "data/img/perktree.jpg"},
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

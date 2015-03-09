@@ -3,7 +3,7 @@ game.SpendExp = me.ScreenObject.extend({
 	 *  action to perform on state change
 	 */
 	onResetEvent: function() {	
-		//inserts the title-screen image into the map
+		//inserts the exp-screen image into the map
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('exp-screen')), -10); // TODO
 
 		//for new game
@@ -16,7 +16,7 @@ game.SpendExp = me.ScreenObject.extend({
 			},
 			//function that sets up the writing
 			draw: function(renderer){
-				//inserts the message "Awesomenauts!" and sets where writing starts
+				//inserts the message "spend" and sets where writing starts
 				this.font.draw(renderer.getContext(), "SPEND", this.pos.x, this.pos.y);
 			},
 			

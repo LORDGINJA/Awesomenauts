@@ -72,7 +72,7 @@ game.TitleScreen = me.ScreenObject.extend({
 
 				//gets rid of the mouse as an object
 				me.input.releasePointerEvent('pointerdown', this);
-				//sets screen to play screen
+				//sets screen to exp screen
 				me.state.change(me.state.SPENDEXP);
 			}
 		})));
