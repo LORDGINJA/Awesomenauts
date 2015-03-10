@@ -36,4 +36,6 @@ body {
 @font-face {
 	font-family: flame; 
 	src: local("flame Condensed"), url('./fonts/flame.TTF');
+	font-family: halo; 
+	src: local("halo Condensed"), url('./fonts/halo.TTF');
 }
