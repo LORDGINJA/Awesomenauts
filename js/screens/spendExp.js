@@ -12,7 +12,8 @@ game.SpendExp = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.F3, "F3");
 		me.input.bindKey(me.input.KEY.F4, "F4");
 		me.input.bindKey(me.input.KEY.F5, "F5");
-
+		//builds variable to store the cost of exp1
+		var exp1cost = ((game.data.exp4 + 1) * 10);
 
 		//for new game
 		me.game.world.addChild(new (me.Renderable.extend({
@@ -29,7 +30,7 @@ game.SpendExp = me.ScreenObject.extend({
 				//inserts the message "Current EXP: " and adds the current exp and sets where writing starts
 				this.font.draw(renderer.getContext(), "CURRENT EXP: " + game.data.exp.toString(), this.pos.x, this.pos.y + 50);
 				//inserts the message "Current EXP: " and adds the current exp, the cost, and sets where writing starts
-				this.font.draw(renderer.getContext(), "F1: INCREASE GOLD PRODUCTION. CURRENT LEVEL: " + game.data.exp.toString() + "COST: " + ((game.data.exp1 + 1) * 10), this.pos.x, this.pos.y + 100);
+				this.font.draw(renderer.getContext(), "F1: INCREASE GOLD PRODUCTION. CURRENT LEVEL: " + game.data.exp.toString() + "COST: " + exp1cost, this.pos.x, this.pos.y + 100);
 				//inserts the message "Current EXP: " and adds the current exp, the cost, and sets where writing starts
 				this.font.draw(renderer.getContext(), "F2: INCREASE SPEED. CURRENT LEVEL: " + game.data.exp2.toString() + "COST: " + ((game.data.exp2 + 1) * 10), this.pos.x, this.pos.y + 150);
 				//inserts the message "Current EXP: " and adds the current exp, the cost, and sets where writing starts
@@ -43,7 +44,20 @@ game.SpendExp = me.ScreenObject.extend({
 		//checks if buttons are pressed
 		this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge){
 			//runs if F1 button is pressed
-			if (action === "F1") {}
+			if (action === "F1") {
+				//runs if player has at least 10 exp
+				if (game.data.exp >= 10) {
+					//adds 1 to exp1
+					game.data.exp1 += 1;
+					//subtracts the cost of exp1 from exp
+					game.data.exp -= exp1cost;
+					//goes to play screen
+					me.state.change(me.state.PLAY);
+				}
+				else{
+					console.log("Not enough exp");
+				}
+			}
 			//runs if F2 button is pressed
 			if (action === "F2") {}
 			//runs if F3 button is pressed

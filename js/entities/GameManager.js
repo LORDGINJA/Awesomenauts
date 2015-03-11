@@ -44,7 +44,9 @@ game.GameTimeManager = Object.extend({
 	goldTimerCheck: function(){
 		//checks to make sure there is a multiple of ten. makes sure its been at least a second since last creep has been made
 		if(Math.round(this.now/1000)%20 === 0 && (this.now - this.lastCreep >= 1000)){
-			game.data.gold += 1;
+			//adds 1 more gold than game.data.exp1
+			game.data.gold += (game.data.exp1 + 1);
+			//logs it into the console
 			console.log("Current gold: " + game.data.gold);
 		}
 	},
@@ -110,11 +112,9 @@ game.ExperienceManager = Object.extend({
 			game.data.exp += 1;
 		}
 		console.log(game.data.exp);
-		console.log(game.data.exp2);
 		//says game's over
 		this.gameover = true;
 		//saves the value of the exp variable
 		me.save.exp = game.data.exp;
-		me.save.exp2 = 4;
 	}
 });
