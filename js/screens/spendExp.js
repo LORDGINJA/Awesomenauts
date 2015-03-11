@@ -20,7 +20,7 @@ game.SpendExp = me.ScreenObject.extend({
 				//calls super class and positions it
 				this._super(me.Renderable, 'init', [10, 10, 300, 50]);
 				//sets the font to arial, the size 46, and colors it white
-				this.font = new me.Font("halo", 26, "#DE7E18");
+				this.font = new me.Font("halfelven", 36, "gold");
 			},
 			//function that sets up the writing
 			draw: function(renderer){
