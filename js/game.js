@@ -4,7 +4,7 @@ var game = {
 
 	// an object where to store game information
 	data : {
-		// score
+		// global variables
 		score : 0,
 		paused: false,
 		enemyBaseHealth : 1,
@@ -30,7 +30,9 @@ var game = {
 		exp2: 0,
 		exp3: 0,
 		exp4: 0,
-		win: 0
+		win: 0,
+		pausePost: "",
+		buyscreen: ""
 	},
 	
 	
@@ -86,10 +88,12 @@ var game = {
 		me.pool.register("FriendCreep", game.FriendCreep, true);
 		//registers GameTimeManager
 		me.pool.register("GameTimeManager", game.GameTimeManager);
-		//registers Manager
+		//registers HeroDeathManager
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
-		//registers GameTimeManager
+		//registers ExperienceManager
 		me.pool.register("ExperienceManager", game.ExperienceManager);		
+		//registers SpendGold
+		me.pool.register("SpendGold", game.SpendGold);		
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());

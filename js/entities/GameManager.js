@@ -118,3 +118,21 @@ game.ExperienceManager = Object.extend({
 		me.save.exp = game.data.exp;
 	}
 });
+
+//for spending gold
+game.SpendGold = Object.extend({
+	init: function(x, y, settings){
+		//sets timer
+		this.now = new Date().getTime();
+		//keeps track of last time pause button was pressed
+		this.lastBuy = new Date().getTime();
+		//says the game is not paused
+		this.paused = game.data.paused;
+		//keeps the function updating
+		this.alwaysUpdate = true;
+	},
+
+	update: function(){
+		return true;
+	}
+});

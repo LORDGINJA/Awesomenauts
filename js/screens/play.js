@@ -15,20 +15,26 @@ game.PlayScreen = me.ScreenObject.extend({
 		this.resetPlayer(0, 420);
 		//calls the resetPlayer function with the parameters 0 and 420
 		this.resetEnemy(900, 420);
-		//adds gamemanager to world
+		//adds HeroDeathmanager to world
 		var heroDeathManager = me.pool.pull("HeroDeathManager", 0 , 0, {});
-		//puts gamemanager into world
+		//puts HeroDeathmanager into world
 		me.game.world.addChild(heroDeathManager, 0);
 
-		//adds gamemanager to world
+		//adds TImemanager to world
 		var gameTimeManager = me.pool.pull("GameTimeManager", 0 , 0, {});
-		//puts gamemanager into world
+		//puts Timemanager into world
 		me.game.world.addChild(gameTimeManager, 0);
 
-		//adds gamemanager to world
+		//adds Experiencemanager to world
 		var ExperienceManager = me.pool.pull("ExperienceManager", 0 , 0, {});
-		//puts gamemanager into world
+		//puts Experiencemanager into world
 		me.game.world.addChild(ExperienceManager, 0);
+
+		//adds spendgold to world
+		var spendGold = me.pool.pull("SpendGold", 0 , 0, {});
+		//puts gamemanager into world
+		me.game.world.addChild(spendGold, 0);
+
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//enemy hero hack
 
@@ -39,7 +45,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		//makes the W key into a variable
 		me.input.bindKey(me.input.KEY.W, "jump");
 		//makes an attack key
-		me.input.bindKey(me.input.KEY.C, "attack");
+		me.input.bindKey(me.input.KEY.V, "attack");
 		//Makes the right key into a variable
 		me.input.bindKey(me.input.KEY.RIGHT, "rights");
 		//makes the right key into a variable
@@ -48,11 +54,12 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.UP, "jumps");
 		//makes space an attack key
 		me.input.bindKey(me.input.KEY.SPACE, "attacks");
-
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//pause button hack
-		//makes space an attack key
+		//pause/gold screen button
 		me.input.bindKey(me.input.KEY.P, "pause");
+		//special skill button
+		me.input.bindKey(me.input.KEY.Q, "skill1");
+		//special skill button
+		me.input.bindKey(me.input.KEY.R, "skill2");
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
