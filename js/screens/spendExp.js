@@ -30,13 +30,13 @@ game.SpendExp = me.ScreenObject.extend({
 				//inserts the message "Current EXP: " and adds the current exp and sets where writing starts
 				this.font.draw(renderer.getContext(), "CURRENT EXP: " + game.data.exp.toString(), this.pos.x, this.pos.y + 50);
 				//inserts the message "Current EXP: " and adds the current exp, the cost, and sets where writing starts
-				this.font.draw(renderer.getContext(), "F1: INCREASE GOLD PRODUCTION. CURRENT LEVEL: " + game.data.exp.toString() + "COST: " + exp1cost, this.pos.x, this.pos.y + 100);
+				this.font.draw(renderer.getContext(), "F1: INCREASE GOLD PRODUCTION. CURRENT LEVEL: " + game.data.exp.toString() + ". COST: " + exp1cost, this.pos.x, this.pos.y + 100);
 				//inserts the message "Current EXP: " and adds the current exp, the cost, and sets where writing starts
-				this.font.draw(renderer.getContext(), "F2: INCREASE SPEED. CURRENT LEVEL: " + game.data.exp2.toString() + "COST: " + ((game.data.exp2 + 1) * 10), this.pos.x, this.pos.y + 150);
+				this.font.draw(renderer.getContext(), "F2: INCREASE SPEED. CURRENT LEVEL: " + game.data.exp2.toString() + ". COST: " + ((game.data.exp2 + 1) * 10), this.pos.x, this.pos.y + 150);
 				//inserts the message "Current EXP: " and adds the current exp, the cost, and sets where writing starts
-				this.font.draw(renderer.getContext(), "F3: INCREASE DAMAGE. CURRENT LEVEL: " + game.data.exp3.toString() + "COST: " + ((game.data.exp3 + 1) * 10), this.pos.x, this.pos.y + 200);
+				this.font.draw(renderer.getContext(), "F3: INCREASE DAMAGE. CURRENT LEVEL: " + game.data.exp3.toString() + ". COST: " + ((game.data.exp3 + 1) * 10), this.pos.x, this.pos.y + 200);
 				//inserts the message "F4: INCREASE STARTING HEALTH. CURRENT LEVEL: " and adds the current exp, the cost, and sets where writing starts
-				this.font.draw(renderer.getContext(), "F4: INCREASE STARTING HEALTH. CURRENT LEVEL: " + game.data.exp4.toString() + "COST: " + ((game.data.exp4 + 1) * 10), this.pos.x, this.pos.y + 250);
+				this.font.draw(renderer.getContext(), "F4: INCREASE STARTING HEALTH. CURRENT LEVEL: " + game.data.exp4.toString() + ". COST: " + ((game.data.exp4 + 1) * 10), this.pos.x, this.pos.y + 250);
 			},
 			
 		})));

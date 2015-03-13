@@ -130,9 +130,59 @@ game.SpendGold = Object.extend({
 		this.paused = game.data.paused;
 		//keeps the function updating
 		this.alwaysUpdate = true;
+		//updates functon everytime game is paused
+		this.updateWhenPaused = true;
+		//says the player isnt buying anything
+		this.buying = false;
 	},
 
 	update: function(){
+		//sets a timer
+		this.now = new Date().getTime();
+		//runs if buy button has been pressed and its been at least a second since its last been pressed
+		if (me.input.isKeyPressed("pause") && this.now - this.lastBuy >= 1000) {
+			//resets timer
+			this.lastBuy = this.now;
+			//runs if player isnt buying anything
+			if (!this.buying) {
+				//runs function
+				this.startBuying();
+			}
+			else{
+				//runs function
+				this.stopBuying();
+			}
+		}
 		return true;
+	},
+
+	startBuying: function(){
+		//says player is buying
+		this.buying = true;
+		//pauses game
+		me.state.pause(me.state.PLAY);
+		//freezes everything
+		game.data.pausePos = me.game.viewport.localToWorld(0, 0);
+		//displays puase screen
+		game.data.buyscreen = new me.Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage("pause-screen"));
+		//updates game while paused
+		game.data.buyscreen.updateWhenPaused = true;
+		//makes pause screen slightly opaque
+		game.data.buyscreen.setOpacity(0.8);
+		//adds buys screen to world
+		me.game.world.addChild(game.data.buyscreen, 34);
+		//stops player from moving
+		game.data.player.body.setVelocity(0, 0);
+	},
+
+	stopBuying: function(){
+		//says player isnt moving
+		this.buying = false;
+		//unpauses game
+		me.state.resume(me.state.PLAY);
+		//lets player move
+		game.data.player.body.setVelocity(game.data.player.playerMoveSpeed, 20);
+		//removes buyscreen
+		me.game.world.removeChild(game.data.buyscreen);
 	}
 });

@@ -31,7 +31,7 @@ var game = {
 		exp3: 0,
 		exp4: 0,
 		win: 0,
-		pausePost: "",
+		pausePos: "",
 		buyscreen: ""
 	},
 	
