@@ -173,6 +173,39 @@ game.SpendGold = Object.extend({
 		me.game.world.addChild(game.data.buyscreen, 34);
 		//stops player from moving
 		game.data.player.body.setVelocity(0, 0);
+		//pauses game
+		me.state.pause(me.state.PLAY);
+		//binds keys for use
+		me.input.bindKey(me.input.KEY.F1, "F1", true);
+		me.input.bindKey(me.input.KEY.F1, "F2", true);
+		me.input.bindKey(me.input.KEY.F1, "F3", true);
+		me.input.bindKey(me.input.KEY.F1, "F4", true);
+		me.input.bindKey(me.input.KEY.F1, "F5", true);
+		me.input.bindKey(me.input.KEY.F1, "F6", true);
+		this.setBuyText();
+	},
+
+	setBuyText: function(){
+		game.data.buytext = new (me.Renderable.extend({
+			init: function(){
+				//calls super class and positions it
+				this._super(me.Renderable, 'init', [game.data.pausePos.x, game.data.pausePos.y, 300, 50]);
+				//sets the font to arial, the size 46, and colors it white
+				this.font = new me.Font("halfelven", 36, "gold");
+				//updates when paused
+				this.updateWhenPaused = true;
+				//always updates
+				this.alwaysUpdate = true;
+			},
+			//function that sets up the writing
+			draw: function(renderer){
+				//inserts the message "Press f1-f4 to buy, f5 to skip" and sets where writing starts
+				this.font.draw(renderer.getContext(), "PRESS F1-F6 TO BUY, P TO EXIT", this.pos.x, this.pos.y);
+			}
+			
+		}));
+	
+	me.game.world.addChild(game.data.buytext, 35);
 	},
 
 	stopBuying: function(){
@@ -184,5 +217,14 @@ game.SpendGold = Object.extend({
 		game.data.player.body.setVelocity(game.data.player.playerMoveSpeed, 20);
 		//removes buyscreen
 		me.game.world.removeChild(game.data.buyscreen);
+		//unbinds keys for use
+		me.input.unbindKey(me.input.KEY.F1, "F1", true);
+		me.input.unbindKey(me.input.KEY.F1, "F2", true);
+		me.input.unbindKey(me.input.KEY.F1, "F3", true);
+		me.input.unbindKey(me.input.KEY.F1, "F4", true);
+		me.input.unbindKey(me.input.KEY.F1, "F5", true);
+		me.input.unbindKey(me.input.KEY.F1, "F6", true);
+
+		me.game.world.removeChild(game.data.buytext);
 	}
 });

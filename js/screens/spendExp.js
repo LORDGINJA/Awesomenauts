@@ -37,7 +37,7 @@ game.SpendExp = me.ScreenObject.extend({
 				this.font.draw(renderer.getContext(), "F3: INCREASE DAMAGE. CURRENT LEVEL: " + game.data.exp3.toString() + ". COST: " + ((game.data.exp3 + 1) * 10), this.pos.x, this.pos.y + 200);
 				//inserts the message "F4: INCREASE STARTING HEALTH. CURRENT LEVEL: " and adds the current exp, the cost, and sets where writing starts
 				this.font.draw(renderer.getContext(), "F4: INCREASE STARTING HEALTH. CURRENT LEVEL: " + game.data.exp4.toString() + ". COST: " + ((game.data.exp4 + 1) * 10), this.pos.x, this.pos.y + 250);
-			},
+			}
 			
 		})));
 		
