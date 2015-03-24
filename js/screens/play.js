@@ -57,9 +57,10 @@ game.PlayScreen = me.ScreenObject.extend({
 		//pause/gold screen button
 		me.input.bindKey(me.input.KEY.P, "pause");
 		//special skill button
-		me.input.bindKey(me.input.KEY.Q, "skill1");
+		me.input.bindKey(me.input.KEY.E, "skill1");
 		//special skill button
 		me.input.bindKey(me.input.KEY.R, "skill2");
+		me.input.bindKey(me.input.KEY.F, "skill3");
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
