@@ -30,13 +30,6 @@ game.GameTimeManager = Object.extend({
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//pause hack
-		// if (me.input.isKeyPressed("pause")) {
-		// 	this.pauseGame();
-		// }
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
 		//updates
 		return true;
 	},
@@ -93,9 +86,11 @@ game.ExperienceManager = Object.extend({
 	},
 
 	update: function(){
+		//runs if enemy base is killed
 		if (game.data.win === true && !this.gameover) {
 			this.gameOver(true);
 		}
+		//runs if player based is killed
 		else if (game.data.win === false && !this.gameover) {
 			this.gameOver(false);
 		}
@@ -153,6 +148,9 @@ game.SpendGold = Object.extend({
 				this.stopBuying();
 			}
 		}
+		//runs function
+		this.checkBuyKeys();
+
 		return true;
 	},
 
@@ -182,6 +180,7 @@ game.SpendGold = Object.extend({
 		me.input.bindKey(me.input.KEY.F1, "F4", true);
 		me.input.bindKey(me.input.KEY.F1, "F5", true);
 		me.input.bindKey(me.input.KEY.F1, "F6", true);
+		//runs function
 		this.setBuyText();
 	},
 
@@ -199,7 +198,7 @@ game.SpendGold = Object.extend({
 			},
 			//function that sets up the writing
 			draw: function(renderer){
-				//inserts the message "Press f1-f4 to buy, f5 to skip" and sets where writing starts
+				//inserts the messages and sets where writing starts
 				this.font.draw(renderer.getContext(), "Press F1-F6 To Buy, P To Exit. Current Gold: " + game.data.gold, this.pos.x + 5, this.pos.y);
 				this.font.draw(renderer.getContext(), "Skill 1: Increase Damage. Current Level: " + game.data.skill1 + ". Cost " + ((game.data.skill1 + 1) * 10), this.pos.x + 5, this.pos.y + 60);
 				this.font.draw(renderer.getContext(), "Skill 2: Increase Speed. Current Level: " + game.data.skill2 + ". Cost " + ((game.data.skill2 + 1) * 10), this.pos.x + 5, this.pos.y + 120);
@@ -230,7 +229,132 @@ game.SpendGold = Object.extend({
 		me.input.unbindKey(me.input.KEY.F1, "F4", true);
 		me.input.unbindKey(me.input.KEY.F1, "F5", true);
 		me.input.unbindKey(me.input.KEY.F1, "F6", true);
-
+		//removes variable
 		me.game.world.removeChild(game.data.buytext);
+	},
+
+	checkBuyKeys: function(){
+		//runs if F1 key is pressed
+		if (me.input.isKeyPressed("F1")){
+			//runs function with parameter 1
+			if (this.checkCost(1)) {
+				//runs function with parameter 1
+				this.makePurchase(1);
+			}
+		}
+		//runs if F2 key is pressed
+		else if (me.input.isKeyPressed("F2")){
+			//runs function with parameter 2
+			if (this.checkCost(2)) {
+				//runs function with parameter 2
+				this.makePurchase(2);
+			}
+		}
+		//runs if F3 key is pressed
+		else if (me.input.isKeyPressed("F3")){
+			//runs function with parameter 3
+			if (this.checkCost(3)) {
+				//runs function with parameter 3
+				this.makePurchase(3);
+			}
+		}
+		//runs if F4 key is pressed
+		else if (me.input.isKeyPressed("F4")){
+			//runs function with parameter 4
+			if (this.checkCost(4)) {
+				//runs function with parameter 4
+				this.makePurchase(4);
+			}
+		}
+		//runs if F5 key is pressed
+		else if (me.input.isKeyPressed("F5")){
+			//runs function with parameter 5
+			if (this.checkCost(5)) {
+				//runs function with parameter 5
+				this.makePurchase(5);
+			}
+		}
+		//runs if F6 key is pressed
+		else if (me.input.isKeyPressed("F6")){
+			//runs function with parameter 6
+			if (this.checkCost(6)) {
+				//runs function with parameter 6
+				this.makePurchase(6);
+			}
+		}
+	},
+
+	checkCost: function(skill){
+		//runs if the parameter is 1 and player has enough gold saved up
+		if (skill === 1 && (game.data.gold >= ((game.data.skill1 + 1) * 10))) {
+			return true;
+		}
+		//runs if the parameter is 2 and player has enough gold saved up
+		else if (skill === 2 && (game.data.gold >= ((game.data.skill2 + 1) * 10))) {
+			return true;
+		}
+		//runs if the parameter is 3 and player has enough gold saved up
+		else if (skill === 3 && (game.data.gold >= ((game.data.skill3 + 1) * 10))) {
+			return true;
+		}
+		//runs if the parameter is 4 and player has enough gold saved up
+		else if (skill === 4 && (game.data.gold >= ((game.data.ability1 + 1) * 10))) {
+			return true;
+		}
+		//runs if the parameter is 5 and player has enough gold saved up
+		else if (skill === 5 && (game.data.gold >= ((game.data.ability2 + 1) * 10))) {
+			return true;
+		}
+		//runs if the parameter is 6 and player has enough gold saved up
+		else if (skill === 6 && (game.data.gold >= ((game.data.ability3 + 1) * 10))) {
+			return true;
+		}
+		else{
+			return false;
+		}
+	},
+
+	makePurchase: function(skill){
+
+		if (skill === 1) {
+			//subtracts cost from gold
+			game.data.gold -= ((game.data.skill1 + 1) * 10);
+			//adds 1 to skill level
+			game.data.skill1 += 1;
+			game.data.playerAttack += 1;
+		}
+		else if (skill === 2) {
+			//subtracts cost from gold
+			game.data.gold -= ((game.data.skill2 + 1) * 10);
+			//adds 1 to skill level
+			game.data.skill2 += 1;
+		}
+		else if (skill === 3) {
+			//subtracts cost from gold
+			game.data.gold -= ((game.data.skill3 + 1) * 10);
+			//adds 1 to skill level
+			game.data.skill3 += 1;
+		}
+		else if (skill === 4) {
+			//subtracts cost from gold
+			game.data.gold -= ((game.data.ability1 + 1) * 10);
+			//adds 1 to skill level
+			game.data.ability1 += 1;
+		}
+		else if (skill === 5) {
+			//subtracts cost from gold
+			game.data.gold -= ((game.data.ability2 + 1) * 10);
+			//adds 1 to skill level
+			game.data.ability2 += 1;
+		}
+		else if (skill === 6) {
+			//subtracts cost from gold
+			game.data.gold -= ((game.data.ability3 + 1) * 10);
+			//adds 1 to skill level
+			game.data.ability3 += 1;
+		}
 	}
 });
+
+
+	
