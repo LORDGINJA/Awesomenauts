@@ -211,7 +211,7 @@ game.SpendGold = Object.extend({
 			
 		}));
 	
-	me.game.world.addChild(game.data.buytext, 35);
+		me.game.world.addChild(game.data.buytext, 35);
 	},
 
 	stopBuying: function(){
