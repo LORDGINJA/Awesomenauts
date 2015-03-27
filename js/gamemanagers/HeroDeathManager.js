@@ -13,6 +13,14 @@ game.HeroDeathManager = Object.extend({
 			me.state.current().resetPlayer(10, 0);
 
 		}
+		//runs if player is dead
+		if(game.data.EnemyHero.dead){
+			//takes the player off the screen
+			me.game.world.removeChild(game.data.EnemyHero);
+			//runs the resetPlayer function
+			me.state.current().resetEnemyHero(10, 0);
+
+		}
 
 		return true;
 	}

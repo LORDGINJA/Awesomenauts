@@ -35,9 +35,9 @@ game.resources = [
 	//loads the pause-screen image from the data folder, allowing it to display it on the map
 	{name: "pause-screen", type:"image", src: "data/img/paused.jpg"},
 
-	{name: "load-screen", type:"image", src: "data/img/loadpic.png"},
+	{name: "load-screen", type:"image", src: "data/img/ebony.jpg"},
 
-	{name: "new-screen", type:"image", src: "data/img/newpic.png"},
+	{name: "new-screen", type:"image", src: "data/img/catjit.jpg"},
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
