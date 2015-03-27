@@ -63,8 +63,10 @@ var game = {
 
 	console.log(game.data.exp);
 
+	//creates screens
 	me.state.SPENDEXP = 112;
-	me.state.PAUSE = 113;
+	me.state.NEW = 113;
+	me.state.LOAD = 114;
 
 	// Initialize the audio.
 	me.audio.init("mp3,ogg");
@@ -106,11 +108,8 @@ var game = {
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 		//creates exp screen
 		me.state.set(me.state.SPENDEXP, new game.SpendExp());
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//pause hack
-		//me.state.set(me.state.PAUSE, new game.PauseScreen());
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+		me.state.set(me.state.NEW, new game.NewProfile());
+		me.state.set(me.state.LOAD, new game.LoadProfile());
 
 		// Start the game with the title screen
 		me.state.change(me.state.MENU);
