@@ -51,6 +51,7 @@
 					$array["exp3"] = $row["exp3"];
 					//takes expierence values from above
 					$array["exp4"] = $row["exp4"];
+					$_SESSION["$name"] = $username;
 					//echoes out whole array 
 					echo json_encode($array);				
 				}
