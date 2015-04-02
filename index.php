@@ -13,6 +13,10 @@
         <link rel="stylesheet" href="../fonts/ENDORALT.TTF">
         <link rel="stylesheet" href="../fonts/halfelven.TTF">
         <link rel="stylesheet" href="../fonts/Fantasy_Clipart.TTF">
+        <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->        
+       	<!-- background music hack -->
+        <!-- <link rel="stylesheet" href="../data/bgm/AOF.mp3"> -->
+        <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
         <link rel="apple-touch-icon" sizes="76x76" href="fonts/touch-icon-ipad-76x76.png">
         <link rel="apple-touch-icon" sizes="120x120" href="icons/touch-icon-iphone-retina-120x120.png">
         <link rel="apple-touch-icon" sizes="152x152" href="icons/touch-icon-ipad-retina-152x152.png">
@@ -43,7 +47,7 @@
 		<script type="text/javascript" src="js/entities/SkeletonBase.js"></script>
 		<script type="text/javascript" src="js/gamemanagers/GameTimerManager.js"></script>
 		<script type="text/javascript" src="js/gamemanagers/spendGold.js"></script>
-		<script type="text/javascript" src="js/entities/spendExp.js"></script>
+		<script type="text/javascript" src="js/screens/spendExp.js"></script>
 		<script type="text/javascript" src="js/gamemanagers/HeroDeathManager.js"></script>
 		<script type="text/javascript" src="js/screens/newProfile.js"></script>
 		<script type="text/javascript" src="js/screens/loadProfile.js"></script>
