@@ -5,6 +5,7 @@ game.TitleScreen = me.ScreenObject.extend({
 	onResetEvent: function() {	
 		//inserts the title-screen image into the map
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('title-screen')), -10); // TODO
+		me.audio.playTrack("AOF");
 
 		//for new game
 		me.game.world.addChild(new (me.Renderable.extend({
