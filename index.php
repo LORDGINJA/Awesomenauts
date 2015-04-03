@@ -36,7 +36,7 @@
 			<!-- makes a text box for password -->
 			<div class="password">
 				<label for="password">Password</label>
-				<input type="text" name="password" id="password">
+				<input type="password" name="password" id="password">
 			</div>
 			<!-- makes buttons -->
 			<button type="button" id="register">Register</button>
@@ -122,12 +122,47 @@
 				})
 				//if it works it goes to play screen
 				.success(function(response){
-					if (response === "true") {
+					if (response==="true") {
 						me.state.change(me.state.PLAY);
 					}
 					//if response doesnt equal true, says why not
 					else{
 						alert(response);
+					}
+				})
+				//if it doesnt work it says fail
+				.fail(function(response){
+					alert("fail");
+				});
+			});
+			//loads saved data
+			$("#load").bind("click", function(){
+				$.ajax({
+					type: "POST",
+					url: "php/controller/login-user.php",
+					data: {
+						username: $('#username').val(),
+						password: $('#password').val()
+					},
+					dataType: "text"
+				})
+				//if wrong inputs, says so
+				.success(function(response){
+					if (response==="Invalid username and/or password") {
+						alert(response);
+						
+					}
+					//if not, goes to exp screen
+					else{
+						var data = jQuery.parseJSON(response);
+						//loads exp
+						game.data.exp = data["exp"];
+						game.data.exp1 = data["exp1"];
+						game.data.exp2 = data["exp2"];
+						game.data.exp3 = data["exp3"];
+						game.data.exp4 = data["exp4"];
+						//goes to spendscreen
+						me.state.change(me.state.SPENDEXP);
 					}
 				})
 				//if it doesnt work it says fail

@@ -1,22 +1,3 @@
-<html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="../css/create.css">
-		<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
-		<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css.map">
-		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css.map">
-		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
-		<meta name="viewport" content="width=device-width">
-		<meta name="viewport" content="width=320">
-		<meta charset="UTF-8">
-		<title>Blogs</title>
-	</head>
-
-	<header>
-		<h1>WELCOME!</h1>
-	</header>
-
-	<body>
-
 		<?php 
 			//gives access to database
 			require_once(__DIR__ . "/../model/config.php");
@@ -57,21 +38,11 @@
 				}
 
 				else{
-					echo "<p>Sorry, but the username and/or password you have inputted are incorrect</p>";
+					echo "Invalid username and/or password";
 				}
 			}
 
 			else {
-				echo "<p>Sorry, but the username and/or password you have inputted are incorrect</p>";
+				echo "Invalid username and/or password";
 			}
 		?>
-
-		<div class="links">
-			<ul>
-				<button type="button" class="btn btn-default btn-lg link">
-					<a href="<?php echo $path . "home.php"?>"><span class="glyphicon glyphicon-home "></span></p> Home </a>
-				</button>
-			</ul>
-		</div>
-	</body>
-</html>

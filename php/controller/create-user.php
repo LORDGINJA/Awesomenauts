@@ -29,7 +29,7 @@
 			//checks to see if the query is working
 			if ($query) {
 				//needs for ajax
-				echo "True";
+				echo "true";
 			}
 			//if the query isnt working, says why not
 			else{

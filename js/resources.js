@@ -64,7 +64,8 @@ game.resources = [
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//backgorund music hack
-	{name: "AOF", type: "audio", src: "data/bgm/"}
+	{name: "AOF", type: "audio", src: "data/bgm/"},
+	{name: "sky", type: "audio", src: "data/bgm/"}
 	
 
 	/* Sound effects. 
