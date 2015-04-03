@@ -23,3 +23,5 @@
 		//session variable.  saves database object so that it only gets created once
 		$_SESSION["connection"] = $connection;
 	}
+
+?>

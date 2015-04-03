@@ -21,3 +21,5 @@
 	else{
 		echo $_SESSION["connection"]->error;
 	}
+
+	?>

@@ -1,7 +1,9 @@
-<!DOCTYPE HTML>
+<!-- <!DOCTYPE HTML>
+ -->
 <?php
 	require_once("php/controller/create-db.php");
 ?>
+
 <html>
 	<head>
 		<title>melonJS Template</title>
@@ -11,11 +13,9 @@
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon" href="icons/touch-icon-iphone-60x60.png">
-        <link rel="stylesheet" href="../fonts/flame.TTF">
-        <link rel="stylesheet" href="../fonts/halo.TTF">
-        <link rel="stylesheet" href="../fonts/ENDORALT.TTF">
-        <link rel="stylesheet" href="../fonts/halfelven.TTF">
-        <link rel="stylesheet" href="../fonts/Fantasy_Clipart.TTF">
+        <link rel="stylesheet" href="fonts/flame.TTF">
+        <link rel="stylesheet" href="fonts/ENDORALT.TTF">
+        <link rel="stylesheet" href="fonts/halfelven.TTF">
         <link rel="apple-touch-icon" sizes="76x76" href="fonts/touch-icon-ipad-76x76.png">
         <link rel="apple-touch-icon" sizes="120x120" href="icons/touch-icon-iphone-retina-120x120.png">
         <link rel="apple-touch-icon" sizes="152x152" href="icons/touch-icon-ipad-retina-152x152.png">
@@ -122,7 +122,7 @@
 				})
 				//if it works it goes to play screen
 				.success(function(response){
-					if (response==="true") {
+					if (true) {
 						me.state.change(me.state.PLAY);
 					}
 					//if response doesnt equal true, says why not
@@ -148,7 +148,7 @@
 				})
 				//if wrong inputs, says so
 				.success(function(response){
-					if (response==="Invalid username and/or password") {
+					if (response === "Invalid username and/or password") {
 						alert(response);
 						
 					}
