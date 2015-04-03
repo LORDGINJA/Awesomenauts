@@ -15,16 +15,4 @@
 		. "exp3 int(4),"
 		. "exp4 int(4),"
 		. "PRIMARY KEY (id))");
-
-	//lets me know that the users' database has been created
-	if($query){
-		//echo "<p> Successfully created table: users </p>";
-	}
-
-
-	//if the database hasn't been created, this echoes out the error
-	else{
-		//echo "<p>" . $_SESSION["connection"]->error . "</p>";
-	}
-
 ?>
