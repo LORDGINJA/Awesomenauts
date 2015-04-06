@@ -161,9 +161,9 @@ game.PlayerEntity = me.Entity.extend ({
 		}
 		//runs if F button is pressed
 		else if (me.input.isKeyPressed("skill3")) {
-			throwSpear: function(){
+			spearThrow: function(){
 				if (this.lastSpear >= game.data.spearTimer && game.data.ablilty3 > 0) {
-					this.lastCreep = this.now;
+					this.lastSpear = this.now;
 					//creates and inserts creeps into world
 					var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {});
 					//adds the creeps to the world

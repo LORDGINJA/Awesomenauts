@@ -6,4 +6,4 @@ game.SpearThrow = me.Entity.extend ({
 	update: function(delta){
 		return true;
 	}
-})
+});
