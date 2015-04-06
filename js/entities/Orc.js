@@ -47,6 +47,8 @@ game.PlayerEntity = me.Entity.extend ({
 		this.now = new Date().getTime();
 		//same ^^
 		this.lastHit = this.now;
+		//variable for keeping track when spears get thrown
+		this.lastSpear = this.now;
 		//keeps the player from attacking multiple times
 		this.lastAttack = new Date().getTime();
 	},
@@ -86,7 +88,9 @@ game.PlayerEntity = me.Entity.extend ({
 		//calls named function
 		this.dead = this.checkIfDead();
 		//calls named function
-		this.checkKeyPressesAndMove();		
+		this.checkKeyPressesAndMove();	
+		//calls named function
+		this.checkAbilityKeys();	
 		//calls named function
 		this.setAnimation();
 		//checks to see if player is colliding with base
@@ -143,6 +147,29 @@ game.PlayerEntity = me.Entity.extend ({
 			this.body.jumping = true;
 			//sets velocity of the jump and the time
 			this.body.vel.y -= this.body.accel.y * me.timer.tick;
+		}
+	},
+
+	checkAbilityKeys: function(){
+		//runs if E button is pressed
+		if (me.input.isKeyPressed("skill1")) {
+
+		}
+		//runs if R button is pressed
+		else if (me.input.isKeyPressed("skill2")) {
+			
+		}
+		//runs if F button is pressed
+		else if (me.input.isKeyPressed("skill3")) {
+			throwSpear: function(){
+				if (this.lastSpear >= game.data.spearTimer && game.data.ablilty3 > 0) {
+					this.lastCreep = this.now;
+					//creates and inserts creeps into world
+					var spear = me.pool.pull("spear", this.pos.x, this.pos.y, {});
+					//adds the creeps to the world
+					me.game.world.addChild(spear, 5);
+				}
+			}
 		}
 	},
 

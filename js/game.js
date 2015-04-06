@@ -17,6 +17,7 @@ var game = {
 		playerAttack: 1,
 		playerAttackTimer: 1000,
 		creepAttackTimer: 1000,
+		spearTimer: 15,
 		playerMoveSpeed: 8,
 		creepMoveSpeed: 5,
 		gameTimeManager: "",
@@ -101,7 +102,9 @@ var game = {
 		//registers ExperienceManager
 		me.pool.register("ExperienceManager", game.ExperienceManager);		
 		//registers SpendGold
-		me.pool.register("SpendGold", game.SpendGold);		
+		me.pool.register("SpendGold", game.SpendGold);
+		//registers spear
+		me.pool.register("spear", game.SpearThrow);		
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());

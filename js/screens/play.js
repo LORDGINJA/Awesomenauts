@@ -60,6 +60,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.input.bindKey(me.input.KEY.E, "skill1");
 		//special skill button
 		me.input.bindKey(me.input.KEY.R, "skill2");
+		//special skill button
 		me.input.bindKey(me.input.KEY.F, "skill3");
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

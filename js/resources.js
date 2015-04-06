@@ -40,11 +40,14 @@ game.resources = [
 	{name: "exp-screen", type:"image", src: "data/img/perktree.jpg"},
 	//loads the pause-screen image from the data folder, allowing it to display it on the map
 	{name: "pause-screen", type:"image", src: "data/img/paused.jpg"},
-
+	//loads the load-screen image from the data folder, allowing it to display it on the map
 	{name: "load-screen", type:"image", src: "data/img/ebony.jpg"},
-
+	//loads the new-screen image from the data folder, allowing it to display it on the map
 	{name: "new-screen", type:"image", src: "data/img/catjit.jpg"},
 
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//throw Spear hack
+	{name: "spear", type:"image", src: "data/img/spear.png"},
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/* Atlases 
