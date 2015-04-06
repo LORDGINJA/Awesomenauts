@@ -2,13 +2,13 @@
 	//gives access to database
 	require_once(__DIR__ . "/../model/config.php");
 	//stores many variables in ome object
-	$array = array{
+	$array = array(
 		'exp' => '',
 		'exp1' => '',
 		'exp2' => '',
 		'exp3' => '',
-		'exp4' => '',
-	};
+		'exp4' => ''
+	);
 	//stores username and filters input
 	$username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 	//stores username and filters input

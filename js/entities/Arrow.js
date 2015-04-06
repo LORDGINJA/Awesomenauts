@@ -1,9 +1,9 @@
-game.SpearThrow = me.Entity.extend ({
+game.Arrow = me.Entity.extend ({
 	init: function(x, y, settings, facing){
 		//reaches the constructor function for enitity
 		this._super(me.Entity, 'init', [x, y, {
 			//settings. shows the creep
-			image: "spear",
+			image: "arrow",
 			//sets aside a width of 64 pixels for the sprite
 			width: 48,
 			//sets aside a height of 64 pixels for the sprite
@@ -23,8 +23,7 @@ game.SpearThrow = me.Entity.extend ({
 		//sets the creep's horizantal and vertical speed
 		this.body.setVelocity(8, 0);
 		//sets the sprite's type
-		this.type = "spear";
-		this.attack = game.data.ability3 * 3;
+		this.type = "arrow";
 		this.facing = facing;
 		
 	},
@@ -46,8 +45,8 @@ game.SpearThrow = me.Entity.extend ({
 
 	collideHandler: function(response){
 			//runs if creep collides with tower 
-			if (response.b.type === 'EnemyBase' || response.b.type === 'enemyCreep') {
-				response.b.loseHealth(this.attack);
+			if (response.b.type === 'PlayerBase' || response.b.type === 'friendCreep') {
+				response.b.loseHealth(this.game.playerAttack);
 				me.game.world.removeChild(this);
 			}
 		}
