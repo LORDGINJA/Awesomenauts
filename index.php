@@ -148,7 +148,7 @@
 				//if wrong inputs, says so
 				.success(function(response){
 					if (response === "Invalid username or password") {
-						alert(response);
+						alert("Invalid username or password");
 						
 					}
 					//if not, goes to exp screen
