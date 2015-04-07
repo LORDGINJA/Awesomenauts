@@ -105,6 +105,22 @@ game.EnemyCreep = me.Entity.extend({
 					response.b.loseHealth(game.data.enemyCreepAttack);
 				}
 			}
+
+			// else if (response.b.type === 'Jump') {
+			// 	//makes creep jump
+			// 	jump: function(response) {
+			// 		var xdif = this.pos.x - response.b.pos.x;
+			// 		//gives xdif a value
+
+			// 		if (xdif < 61) {
+			// 			this.body.jumping = true;
+			// 			//sets jumping to true
+			// 			this.body.vel.y -= this.body.accel.y * me.timer.tick;
+			// 			//causes actual jump to occur
+			// 		}
+			// 	}
+			// }
+	
 		}
 	
 });

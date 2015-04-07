@@ -36,8 +36,6 @@ game.EnemyHeroEntity = me.Entity.extend ({
 		this.lastHit = this.now;
 		//keeps the player from attacking multiple times
 		this.lastAttack = new Date().getTime();
-		//makesit so the player is always on the screen
-		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 		//gives player animation while standing
 		this.renderable.addAnimation("idle", [78]);
 		//gives player animation while walking

@@ -13,7 +13,7 @@ game.MiniPlayerLocation = me.Entity.extend ({
 		this.settings.width = this.diameter; 
 		this.settings.height = this.diameter; 
 		this.settings.spritewidth = this.diameter; 
-		this.settings = this.diameter;
+		this.settings.spriteheight = this.diameter;
 		//tells minimap to stay on screen
 		this.floating = true;
 		//builds a canvas 

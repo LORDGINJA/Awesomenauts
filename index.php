@@ -147,12 +147,13 @@
 				})
 				//if wrong inputs, says so
 				.success(function(response){
-					if (response === "Invalid username and/or password") {
+					if (response === "Invalid username or password") {
 						alert(response);
 						
 					}
 					//if not, goes to exp screen
 					else{
+						alert(response);
 						var data = jQuery.parseJSON(response);
 						//loads exp
 						game.data.exp = data["exp"];
