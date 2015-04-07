@@ -43,7 +43,7 @@ game.EnemyHeroEntity = me.Entity.extend ({
 		//gives player animation while walking
 		this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
 		//gives player animation while attacking
-		this.renderable.addAnimation("attack", [247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258], 80);
+		this.renderable.addAnimation("attack", [221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232], 80);
 		//the player's start animation
 		this.renderable.setCurrentAnimation("idle");
 	},
