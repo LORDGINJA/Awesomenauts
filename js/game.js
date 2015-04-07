@@ -109,7 +109,7 @@ var game = {
 		//registers spear
 		me.pool.register("spear", game.SpearThrow, true);		
 		//me.pool.register("arrow", game.Arrow);		
-		me.pool.register("MniMao", game.MiniMap, true);
+		me.pool.register("minimap", game.MiniMap, true);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
