@@ -90,6 +90,9 @@ game.PlayScreen = me.ScreenObject.extend({
 		game.data.player = me.pool.pull("player", x, y, {});
 		//adds him to the game and sets his layer-level
 		me.game.world.addChild(game.data.player, 5);
+
+		game.data.miniPlayer = me.pool.pull("miniplayer", 10, 10, {});
+		me.game.world.addChild(game.data.miniPlayer, 31);
 	},
 
 	resetEnemy: function(x, y){
