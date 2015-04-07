@@ -42,7 +42,8 @@ var game = {
 		win: 0,
 		pausePos: "",
 		buyscreen: "",
-		buytext: ""
+		buytext: "",
+		minimap: ""
 	},
 	
 	
@@ -106,8 +107,9 @@ var game = {
 		//registers SpendGold
 		me.pool.register("SpendGold", game.SpendGold);
 		//registers spear
-		me.pool.register("spear", game.SpearThrow);		
+		me.pool.register("spear", game.SpearThrow, true);		
 		//me.pool.register("arrow", game.Arrow);		
+		me.pool.register("MniMao", game.MiniMap, true);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
