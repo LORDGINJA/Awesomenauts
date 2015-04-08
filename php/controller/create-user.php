@@ -18,6 +18,7 @@
 		. "password = '$hashedPassword', "
 		//sets salt
 		. "salt = '$salt', "
+		//saves exp
 		. "exp = 0, "
 		. "exp1 = 0, "
 		. "exp2 = 0, "

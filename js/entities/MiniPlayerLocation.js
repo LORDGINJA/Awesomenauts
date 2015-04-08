@@ -1,4 +1,4 @@
-//creating the player's dot on the minimap
+//creating the player's dot on the minimap hack
 game.MiniPlayerLocation = me.Entity.extend ({
 	init: function(x, y, settings){
 		this.settings = settings;
@@ -33,6 +33,7 @@ game.MiniPlayerLocation = me.Entity.extend ({
 		//outlines dot
 		ctx.stroke();
 		var my = this;
+		//gives dot size
 		this._super(me.Entity, "init", [x, y, {
 			width:14,
 			height: 14,

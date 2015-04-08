@@ -106,6 +106,7 @@ game.EnemyCreep = me.Entity.extend({
 				}
 			}
 
+			//jump hack
 			// else if (response.b.type === 'Jump') {
 			// 	//makes creep jump
 			// 	jump: function(response) {

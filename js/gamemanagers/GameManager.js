@@ -82,6 +82,7 @@
 game.ExperienceManager = Object.extend({
 	init: function(x, y, settings){
 		this.alwaysUpdate = true;
+		//
 		this.gameover = false;
 	},
 

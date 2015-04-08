@@ -1,3 +1,4 @@
+//spear throw hack
 game.SpearThrow = me.Entity.extend ({
 	init: function(x, y, settings, facing){
 		//reaches the constructor function for enitity
@@ -30,9 +31,11 @@ game.SpearThrow = me.Entity.extend ({
 	},
 
 	update: function(delta){
+		//sets direction in which spear flies to left
 		if (this.facing === "left") {
 			this.body.vel.x -= this.body.accel.x *  me.timer.tick;
 		}
+		//sets direction in which spear flies to right
 		else{
 			this.body.vel.x += this.body.accel.x *  me.timer.tick;
 		}
@@ -45,7 +48,7 @@ game.SpearThrow = me.Entity.extend ({
 	},
 
 	collideHandler: function(response){
-			//runs if creep collides with tower 
+			//runs if creep collides with enemy tower or creep
 			if (response.b.type === 'EnemyBase' || response.b.type === 'enemyCreep') {
 				response.b.loseHealth(this.attack);
 				me.game.world.removeChild(this);

@@ -110,14 +110,18 @@ var game = {
 		//registers spear
 		me.pool.register("spear", game.SpearThrow, true);		
 		//me.pool.register("arrow", game.Arrow);		
+		//registers minimap
 		me.pool.register("minimap", game.MiniMap, true);
+		//registers player dot
 		me.pool.register("miniplayer", game.MiniPlayerLocation, true);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 		//creates exp screen
 		me.state.set(me.state.SPENDEXP, new game.SpendExp());
+		//creates load screen
 		me.state.set(me.state.NEW, new game.NewProfile());
+		//creates new screen
 		me.state.set(me.state.LOAD, new game.LoadProfile());
 
 		// Start the game with the title screen

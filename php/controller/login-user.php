@@ -17,6 +17,7 @@
 	//retireving information required for login from our database
 	if($query->num_rows == 1){
 		$row = $query->fetch_array();
+		//retrieves saved exp values
 		if($row["password"] === crypt($password, $row["salt"])){
 			$_SESSION["authenticated"] = true;
 			$array["exp"] = $row["exp"];

@@ -1,3 +1,4 @@
+//arrow shooting hack
 // game.Arrow = me.Entity.extend ({
 // 	init: function(x, y, settings, facing){
 // 		//reaches the constructor function for enitity

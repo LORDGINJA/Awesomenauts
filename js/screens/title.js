@@ -5,7 +5,11 @@ game.TitleScreen = me.ScreenObject.extend({
 	onResetEvent: function() {	
 		//inserts the title-screen image into the map
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('title-screen')), -10); // TODO
-		//me.audio.playTrack("sky");
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//background music hack
+		me.audio.playTrack("sky");
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		//for new game
 		game.data.option1 = new (me.Renderable.extend({
@@ -32,6 +36,7 @@ game.TitleScreen = me.ScreenObject.extend({
 				//gets rid of the mouse as an object
 				me.input.releasePointerEvent('pointerdown', this);
 				me.input.releasePointerEvent('pointerdown', game.data.option2);
+				//resets exp values
 				me.save.remove('exp');
 				me.save.remove('exp1');
 				me.save.remove('exp2');
@@ -67,6 +72,7 @@ game.TitleScreen = me.ScreenObject.extend({
 			},
 
 			newGame: function(){
+				//saves exp values
 				game.data.exp = me.save.exp;
 				game.data.exp1 = me.save.exp1;
 				game.data.exp2 = me.save.exp2;
