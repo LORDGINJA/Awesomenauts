@@ -153,7 +153,6 @@
 					}
 					//if not, goes to exp screen
 					else{
-						alert(response);
 						var data = jQuery.parseJSON(response);
 						//loads exp
 						game.data.exp = data["exp"];

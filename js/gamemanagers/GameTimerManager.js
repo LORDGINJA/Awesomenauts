@@ -25,7 +25,7 @@ game.GameTimeManager = Object.extend({
 			//takes the player off the screen
 			me.game.world.removeChild(game.data.enemyHero);
 			//runs the resetPlayer function
-			me.state.current().resetPlayer(10, 0);
+			me.state.current().resetEnemy(10, 0);
 
 		}
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,7 +50,7 @@ game.GameTimeManager = Object.extend({
 			//updates timer
 			this.lastCreep = this.now;
 			//creates and inserts creeps into world
-			var creepe = me.pool.pull("EnemyCreep", 1000, 0, {});
+			var creepe = me.pool.pull("EnemyCreep", 3000, 0, {});
 			var creepf = me.pool.pull("FriendCreep", 0, 0, {});
 			//adds the creeps to the world
 			me.game.world.addChild(creepe, 5);

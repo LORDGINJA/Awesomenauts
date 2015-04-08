@@ -14,7 +14,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		//calls the resetPlayer function with the parameters 0 and 420
 		this.resetPlayer(0, 420);
 		//calls the resetPlayer function with the parameters 0 and 420
-		this.resetEnemy(900, 420);
+		this.resetEnemy(3000, 420);
 		//adds HeroDeathmanager to world
 		var heroDeathManager = me.pool.pull("HeroDeathManager", 0 , 0, {});
 		//puts HeroDeathmanager into world
