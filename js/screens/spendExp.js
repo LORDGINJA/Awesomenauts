@@ -48,8 +48,8 @@ game.SpendExp = me.ScreenObject.extend({
 		this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge){
 			//runs if F1 button is pressed
 			if (action === "F1") {
-				//runs if player has at least 10 exp
-				if (game.data.exp >= 10) {
+				//runs if player has the right amount of exp
+				if (game.data.exp >= exp1cost) {
 					//adds 1 to exp1
 					game.data.exp1 += 1;
 					//subtracts the cost of exp1 from exp
@@ -63,11 +63,13 @@ game.SpendExp = me.ScreenObject.extend({
 			}
 			//runs if F2 button is pressed
 			if (action === "F2") {
-				//runs if player has at least 10 exp
-				if (game.data.exp >= 10) {
-					//adds 1 to exp1
+				//runs if player has the right amount of exp
+				if (game.data.exp >= 0) {
+					//adds 1 to exp2
 					game.data.exp2 += 1;
-					//subtracts the cost of exp1 from exp
+					//adds speed
+					game.data.playerMoveSpeed += 100;
+					//subtracts the cost of exp2 from exp
 					game.data.exp -= exp2cost;
 					//goes to play screen
 					me.state.change(me.state.PLAY);
@@ -78,11 +80,13 @@ game.SpendExp = me.ScreenObject.extend({
 			}
 			//runs if F3 button is pressed
 			if (action === "F3") {
-				//runs if player has at least 10 exp
-				if (game.data.exp >= 10) {
-					//adds 1 to exp1
+				//runs if player has the right amount of exp
+				if (game.data.exp >= 0) {
+					//adds 1 to exp3
 					game.data.exp3 += 1;
-					//subtracts the cost of exp1 from exp
+					//increases player damage
+					game.data.playerAttack += 10;
+					//subtracts the cost of exp3 from exp
 					game.data.exp -= exp3cost;
 					//goes to play screen
 					me.state.change(me.state.PLAY);
@@ -93,11 +97,13 @@ game.SpendExp = me.ScreenObject.extend({
 			}
 			//runs if F4 button is pressed
 			if (action === "F4") {
-				//runs if player has at least 10 exp
-				if (game.data.exp >= 10) {
-					//adds 1 to exp1
+				//runs if player has the right amount of exp
+				if (game.data.exp >= exp4cost) {
+					//adds 1 to exp4
 					game.data.exp4 += 1;
-					//subtracts the cost of exp1 from exp
+					//increases player health
+					game.data.playerHealth += 1;
+					//subtracts the cost of exp4 from exp
 					game.data.exp -= exp4cost;
 					//goes to play screen
 					me.state.change(me.state.PLAY);
